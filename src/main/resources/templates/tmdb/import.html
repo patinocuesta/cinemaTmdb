@@ -26,14 +26,13 @@
 <body>
 <form th:action="@{/tmdb/import}" method="post">
     <input type="submit" name="FilmsURL" value="Get films full list online" class="button" />
-    <input type="submit" name="PeopleURL" value="Get people full list online " class="button"/>
+    <input type="submit" name="PersonsURL" value="Get people full list online " class="button"/>
     <input type="submit" name="GenresURL" value="Get genres full list online" class="button"/>
 </form>
 <br>
 <form th:action="@{/tmdb/import}" method="post">
     <input type="submit" name="FilmsLocal" value="Get films full list locally" class="button" />
-    <input type="submit" name="PeopleLocal" value="Get people full list locally" class="button"/>
-    <input type="submit" name="GenresLocal" value="Get genres full list locally" class="button"/>
+    <input type="submit" name="PersonsLocal" value="Get people full list locally" class="button"/>
 </form>
 </body>
 </html>
