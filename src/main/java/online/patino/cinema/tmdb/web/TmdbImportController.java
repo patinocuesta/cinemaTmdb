@@ -3,10 +3,13 @@ package online.patino.cinema.tmdb.web;
 import online.patino.cinema.tmdb.service.TmdbFilmManager;
 import online.patino.cinema.tmdb.service.TmdbGenreManager;
 import online.patino.cinema.tmdb.service.TmdbPersonManager;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.IOException;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -46,7 +49,7 @@ public class TmdbImportController {
         return "redirect:../";
     }
     @RequestMapping(value = "/import",  params = "GenresURL", method=POST)
-    public String importOnlineGenres(){
+    public String importOnlineGenres() throws IOException, JSONException {
         tmdbGenreManager.importOnlineFullGenre_ids();
         return "redirect:../";
     }

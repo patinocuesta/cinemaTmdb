@@ -7,7 +7,7 @@ import java.util.Objects;
 @Table(name="tmdb_genre")
 public class TmdbGenre {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Long id;
     @Basic
     @Column (name="name")

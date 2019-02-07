@@ -1,21 +1,25 @@
 package online.patino.cinema.tmdb.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import online.patino.cinema.tmdb.dao.TmdbGenreDao;
 import online.patino.cinema.tmdb.model.TmdbGenre;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.*;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+
 
 @Component
 public class TmdbGenreManager {
-
-    private String apiKey = "579e2cef7112c1ad8b0e5909e4becff1";
+    @Value("${tmdb.api.key}")
+    private String apiKey;
 
     @Autowired
     private TmdbGenreDao tmdbGenreDao;
@@ -29,20 +33,25 @@ public class TmdbGenreManager {
         String url = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKey;
         return url;
     }
-        public void importOnlineFullGenre_ids(){
-            try {
-                InputStream httpIS = new URL(getUrl()).openStream();
-                InputStream bufferedIS = new BufferedInputStream(httpIS);
-                BufferedReader br = new BufferedReader(new InputStreamReader(bufferedIS, StandardCharsets.UTF_8));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    JSONObject json = new JSONObject(line);
-                    Long id = json.getLong("id");
-                    String name= json.getString("name");
-                    TmdbGenre genre = new TmdbGenre(id,name);
-                    tmdbGenreDao.save(genre);
-                }
-            } catch (IOException | JSONException e) {e.printStackTrace();}
+
+        public void importOnlineFullGenre_ids() throws IOException, JSONException {
+            RestTemplate template = new RestTemplate();
+            ResponseEntity<String> response;
+            String resourceUrl =getUrl();
+            response = template.getForEntity(resourceUrl, String.class);
+            JSONObject genresJsonObj = new JSONObject(response.getBody());
+            JSONArray genresJsonArray = (JSONArray) genresJsonObj.get("genres");;
+
+            for (int i = 0; i < genresJsonArray.length(); i++) {
+                JSONObject json = genresJsonArray.getJSONObject(i);
+                Long id = json.getLong("id");
+                String name= json.getString("name");
+                TmdbGenre genre = new TmdbGenre(id, name);
+                tmdbGenreDao.save(genre);
+
+            }
         }
+
+
     }
 
