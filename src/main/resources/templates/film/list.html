@@ -13,12 +13,21 @@
 </head>
 
 <body>
-
-<div th:include="fragments/layout :: header-page">
+<div th:include="fragments/layout :: header-navOpenning">
+</div>
+<div th:include="fragments/layout :: header-navClosing">
 </div>
 
 <div class="ui container padded grid">
     <div class="two column row" th:each="film: ${films}">
+
+
+
+
+
+
+
+
         <div class="one wide middle aligned column">
             <div class="ui tiny image">
                 <img src="http://fr.web.img4.acsta.net/r_1920_1080/pictures/15/10/18/18/56/052074.jpg"
