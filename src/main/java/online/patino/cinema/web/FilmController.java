@@ -89,5 +89,6 @@ public class FilmController {
         return "redirect:/film/mod/" + role.getFilm().getId();
     }
 
+    }
 
-}
+

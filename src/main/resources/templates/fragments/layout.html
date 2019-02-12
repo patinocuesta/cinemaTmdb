@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,71 +7,110 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <title>Layout Title</title>
-    <div th:fragment="header-css" th:remove="tag">
-        <link href="webjars/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet"
-              th:href="@{/webjars/bootstrap/3.4.0/css/bootstrap.min.css}"/>>
+    <link rel='stylesheet' href='/webjars/bootstrap/3.4.0/css/bootstrap.min.css'>
         <!-- Bootstrap core CSS -->
         <!-- Custom styles for this template -->
-        <link href="starter-template.css" rel="stylesheet">
-        </head>
+    <link href="../../static/css/style.css" rel="stylesheet">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </div>
-        <div th:fragment="header-navOpening">
-            <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="#">Navbar</a>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+           </head>
 
-                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Importer des films au catalogue</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notre Catalogue</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                <a class="dropdown-item" href="#">Films</a>
-                                <a class="dropdown-item" href="#">Acteurs</a>
-                                <a class="dropdown-item" href="#">Realisateurs</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                <div th:fragment="header-navClosing">
-                </div>
-            </nav>
-        </div>
-        <div class="container">
+  <body style="height:1500px">
 
-            <div class="starter-template">
-                <h1>Bootstrap starter template</h1>
-                <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-            </div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Spring Cinema</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                  <li><a href="#">A l'affiche</a></li>
+                  <li><a href="#">Evenements</a></li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Explorer
+                          <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="#">Films</a></li>
+                          <li><a href="#">Acteurs</a></li>
+                          <li><a href="#">Realisateurs</a></li>
+                          <li><a href="#">Genres</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nos distributeurs
+                          <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="#">Importer</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nôtre cinema
+                          <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="#">blog</a></li>
+                          <li><a href="#">Nous trouver</a></li>
+                          <li><a href="#">Contact</a></li>
+                          <li><a href="#">A propos de nous</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              </ul>
 
-        </div><!-- /.container -->
+          </div>
 
-        <div th:fragment="footer-js">
-            <!-- Bootstrap core JavaScript
-            ================================================== -->
-            <!-- Placed at the end of the document so the pages load faster -->
-            <script src="webjars/jquery/3.3.1-1/jquery.min.js"
-                    th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
-            <script src="webjars/Semantic-UI/2.4.1/semantic.min.js"
-                    th:src="@{/webjars/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
-            <script src="webjars/tinymce/4.7.9/tinymce.min.js"
-                    th:src="@{/webjars/tinymce/4.7.9/tinymce.min.js}"></script>
-            <script type="application/javascript">
-                $('.ui.dropdown.item')
-                    .dropdown();
-            </script>
-        </div>
-        </body>
+
+      </div>
+  </nav>
+
+  <div class="container" style="margin-top:50px">
+      <h3>Fixed Navbar</h3>
+      <div class="row">
+          <div class="col-md-4">
+              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
+              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
+          </div>
+          <div class="col-md-4">
+              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
+              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
+          </div>
+          <div class="col-md-4">
+              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
+              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
+          </div>
+      </div>
+  </div>
+
+  <h1>Scroll this page to see the effect</h1>
+  <!-- /.container -->
+   <footer class="text-center">
+       <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+           <span class="glyphicon glyphicon-chevron-up"></span>
+       </a><br><br>
+       <p>Bootstrap Theme Made By <a href="#" data-toggle="tooltip" title="Visit w3schools">Spring cinema</a></p>
+   </footer>
+<div th:fragment="footer-js">
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="/webjars/tinymce/4.7.9/tinymce.min.js"></script>
+    <script type="application/javascript">
+        $('.ui.dropdown.item')
+            .dropdown();
+    </script>
+</div>
+
+</body>
 </html>
