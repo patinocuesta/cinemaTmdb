@@ -5,9 +5,7 @@ import org.springframework.transaction.IllegalTransactionStateException;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 public class Review {
@@ -21,18 +19,50 @@ public class Review {
     private static final int DELETED = 5;
     private static final int ABANDONED = 6;
 
-    private static  final   Map<Integer, Integer[]> transitions;
-      static {
-          transitions = new HashMap<>();
-          transitions.put(Review.REJECTED, new Integer[]{Review.WAITING_MODERATION});
-          transitions.put(Review.DELETED, new Integer[]{Review.PUBLISHED});
-          transitions.put(Review.PUBLISHED, new Integer[]{Review.WAITING_MODERATION});
-          transitions.put(Review.MUST_BE_MODIFIED, new Integer[]{Review.WAITING_MODERATION});
-          transitions.put(Review.ABANDONED, new Integer[]{Review.MUST_BE_MODIFIED});
-          transitions.put(Review.WAITING_MODERATION, new Integer[]{Review.WAITING_MODERATION, Review.PUBLISHED, Review.MUST_BE_MODIFIED});
-      }
+    private static  final   Map<Integer, List<Integer>> transitions;
+
+    static {
+        transitions = new HashMap<>();
+        transitions.put(Review.WAITING_MODERATION,Arrays.asList (Review.WAITING_MODERATION, Review.PUBLISHED, Review.MUST_BE_MODIFIED,Review.REJECTED));
+        transitions.put(Review.PUBLISHED,Arrays.asList (Review.WAITING_MODERATION, Review.DELETED));
+        transitions.put(Review.MUST_BE_MODIFIED,Arrays.asList (Review.WAITING_MODERATION, Review.ABANDONED));
+        transitions.put(Review.ABANDONED, new ArrayList<>());
+        transitions.put(Review.DELETED, new ArrayList<>());
+        transitions.put(Review.REJECTED, new ArrayList<>());
+    }
+    private boolean  canTransitTo(int targetState) {
+
+        return Review.transitions.get(this.getState()).contains(targetState);
+    }
 
     private int state = Review.WAITING_MODERATION;
+    public void validByModerator() throws IllegalTransactionStateException{
+        transitTo(Review.PUBLISHED);
+    }
+
+    public void keepForEditByModerator() throws IllegalTransactionStateException {
+        transitTo(Review.MUST_BE_MODIFIED);
+    }
+
+    public void abandonByUser() throws IllegalTransactionStateException {
+        transitTo(Review.ABANDONED);
+    }
+
+    public void rejectByModerator() throws IllegalTransactionStateException {
+        transitTo(Review.REJECTED);
+    }
+
+    public void editByUser() throws IllegalTransactionStateException {
+        transitTo(Review.WAITING_MODERATION);
+    }
+
+    private void transitTo(int target) throws IllegalTransactionStateException {
+        if (canTransitTo(target)) {
+            this.state = target;
+        } else {
+            throw new IllegalTransactionStateException("Transition non autorisée");
+        }
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +80,7 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
 
     public long getId() {
         return id;
@@ -92,6 +123,42 @@ public class Review {
         this.user = user;
     }
 
+    public static int getWaitingModeration() {
+        return WAITING_MODERATION;
+    }
+
+    public static int getPUBLISHED() {
+        return PUBLISHED;
+    }
+
+    public static int getMustBeModified() {
+        return MUST_BE_MODIFIED;
+    }
+
+    public static int getREJECTED() {
+        return REJECTED;
+    }
+
+    public static int getDELETED() {
+        return DELETED;
+    }
+
+    public static int getABANDONED() {
+        return ABANDONED;
+    }
+
+    public static Map<Integer, List<Integer>> getTransitions() {
+        return transitions;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,38 +181,8 @@ public class Review {
         return result;
     }
 
-    public static int getATTENTE_MODERATION() {
-        return WAITING_MODERATION;
-    }
 
-    public static int getPUBLIE() {
-        return PUBLISHED;
-    }
 
-    public static int getATTENTE_MODIFICATION() {
-        return MUST_BE_MODIFIED;
-    }
-
-    public static int getREJETE() {
-        return REJECTED;
-    }
-
-    public static int getSUPPRIME() {
-        return DELETED;
-    }
-
-    public static int getABANDONNE() {
-        return ABANDONED;
-    }
-
-    public int getState() {
-        return this.state;
-    }
-
-    private boolean  canTransitTo(int targetState) {
-
-        return Arrays.asList(transitions.get(targetState)).contains(this.getState());
-    }
 
 
 }
