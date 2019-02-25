@@ -1,9 +1,7 @@
-package online.patino.cinema.tmdb.service;
+package online.patino.cinema.tmdbFullImport.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import online.patino.cinema.tmdb.dao.TmdbGenreDao;
-import online.patino.cinema.tmdb.model.TmdbGenre;
+import online.patino.cinema.tmdbFullImport.dao.TmdbGenreDao;
+import online.patino.cinema.tmdbFullImport.model.TmdbGenre;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

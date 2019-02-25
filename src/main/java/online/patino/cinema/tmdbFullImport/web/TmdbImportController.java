@@ -1,8 +1,8 @@
-package online.patino.cinema.tmdb.web;
+package online.patino.cinema.tmdbFullImport.web;
 
-import online.patino.cinema.tmdb.service.TmdbFilmManager;
-import online.patino.cinema.tmdb.service.TmdbGenreManager;
-import online.patino.cinema.tmdb.service.TmdbPersonManager;
+import online.patino.cinema.tmdbFullImport.service.TmdbFilmManager;
+import online.patino.cinema.tmdbFullImport.service.TmdbGenreManager;
+import online.patino.cinema.tmdbFullImport.service.TmdbPersonManager;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

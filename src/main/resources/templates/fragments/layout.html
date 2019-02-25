@@ -1,117 +1,281 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-    <title>Layout Title</title>
 
-    <!-- Bootstrap core CSS -->
-        <!-- Custom styles for this template -->
-    <link rel='stylesheet'  href='/webjars/bootstrap/css/bootstrap.min.css'th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-    <link rel='stylesheet' href='../../css/style.css>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <head>
+        <div th:fragment="head">
+        <title>CinemaSpring</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../static/css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-             </head>
-  -->
-  <body style="height:1500px">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </div>
+    </head>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Spring Cinema</a>
-          </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav">
-                  <li><a href="#">A l'affiche</a></li>
-                  <li><a href="#">Evenements</a></li>
-                  <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Explorer
-                          <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                          <li><a href="#">Films</a></li>
-                          <li><a href="#">Acteurs</a></li>
-                          <li><a href="#">Realisateurs</a></li>
-                          <li><a href="#">Genres</a></li>
-                      </ul>
-                  </li>
-                  <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nos distributeurs
-                          <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                          <li><a href="#">Importer</a></li>
-                      </ul>
-                  </li>
-                  <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nôtre cinema
-                          <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                          <li><a href="#">blog</a></li>
-                          <li><a href="#">Nous trouver</a></li>
-                          <li><a href="#">Contact</a></li>
-                          <li><a href="#">A propos de nous</a></li>
-                      </ul>
-                  </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-              </ul>
+<body>
+<div th:fragment="nav">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Spring Cinema</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">A l'affiche</a></li>
+                    <li><a href="#">Evenements</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Explorer
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Films</a></li>
+                            <li><a href="#">Acteurs</a></li>
+                            <li><a href="#">Realisateurs</a></li>
+                            <li><a href="#">Genres</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nos distributeurs
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Importer</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nôtre cinema
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">blog</a></li>
+                            <li><a href="#">Nous trouver</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">A propos de nous</a></li>
+                        </ul>
+                    </li>
+                </ul>
 
-          </div>
+            </div>
 
 
-      </div>
-  </nav>
+        </div>
+    </nav>
+    <nav class="classnavbar navbar-inverse" id="importSearch"
+         style="float:left; margin-top:50px; margin-bottom:50px; width:100%">
+        <div class="search-container" style="width:100%;">
+            <form class="example" action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
 
-  <div class="container" style="margin-top:50px">
-      <h3>Fixed Navbar</h3>
-      <div class="row">
-          <div class="col-md-4">
-              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
-              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
-          </div>
-          <div class="col-md-4">
-              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
-              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
-          </div>
-          <div class="col-md-4">
-              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
-              <p>A fixed navigation bar stays visible in a fixed position (top or bottom) independent of the page scroll.</p>
-          </div>
-      </div>
-  </div>
+            </form>
+        </div>
+    </nav>
+</div>
+<div th:fragment="overlay">
+    <div id="overSide" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <div class="container-fluid text-center">
+                <div class="row content">
+                    <div class="col-sm-4 col-md-3 sidenav">
+                        <button type="button" class="btn btn-primary btn-block">Importer</button>
+                        <br/>
+                        <img src="https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg" alt="Avatar"
+                             class="image" style="max-width:100%;">
+                        <br/>
+                        <img src="https://image.tmdb.org/t/p/w500/bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg" alt="Avatar"
+                             class="image" style="max-width:100%;">
 
-  <h1>Scroll this page to see the effect</h1>
-  <!-- /.container -->
-   <footer class="text-center">
-       <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-           <span class="glyphicon glyphicon-chevron-up"></span>
-       </a><br><br>
-       <p>Bootstrap Theme Made By <a href="#" data-toggle="tooltip" title="Visit w3schools">Spring cinema</a></p>
-   </footer>
+                    </div>
+                    <div class="col-sm-5 col-md-7 col-lg-6 text-left">
+                        <div class="well">
+                            <div class="film-title"> title</div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Sinopsis</div>
+                            <div class="panel-body">Overview</div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Equipe artistique</div>
+                            <div class="panel-body">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Nom acteur</div>
+                                        <div class="panel-body"><img
+                                                src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/bPqRdLWWwpOT8sBdj9PWOzNgwou.jpg"
+                                                alt="Avatar" class="image"></div>
+                                        <div class="panel-footer">Role</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Nom acteur</div>
+                                        <div class="panel-body"><img
+                                                src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/hgaIXIW9GKnZhrweplBonG7uhhP.jpg"
+                                                alt="Avatar" class="image"></div>
+                                        <div class="panel-footer">Role</div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Nom acteur</div>
+                                        <div class="panel-body"><img
+                                                src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/50GhCzQuaI5Ul01NEyJZloeVP7g.jpg"
+                                                alt="Avatar" class="image"></div>
+                                        <div class="panel-footer">Role</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-2 col-lg-3 sidenav">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Rating</div>
+                            <div class="panel-body">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Genres</div>
+                            <div class="panel-body">temis</div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Equipe technique</div>
+                            <div class="panel-body">
+                                <div class="col-lg-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Réalisateur</div>
+                                        <div class="panel-body"><img
+                                                src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/bPqRdLWWwpOT8sBdj9PWOzNgwou.jpg"
+                                                alt="Avatar" class="image"></div>
+                                        <div class="panel-footer">nombre</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Scénariste</div>
+                                        <div class="panel-body"><img
+                                                src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/hgaIXIW9GKnZhrweplBonG7uhhP.jpg"
+                                                alt="Avatar" class="image"></div>
+                                        <div class="panel-footer">nombre</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Photographie</div>
+                                        <div class="panel-body"><img
+                                                src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/50GhCzQuaI5Ul01NEyJZloeVP7g.jpg"
+                                                alt="Avatar" class="image"></div>
+                                        <div class="panel-footer">nombre</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Music</div>
+                                        <div class="panel-body"><img
+                                                src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/50GhCzQuaI5Ul01NEyJZloeVP7g.jpg"
+                                                alt="Avatar" class="image"></div>
+                                        <div class="panel-footer">nombre</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Genres</div>
+                                <div class="panel-body">temis</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Release</div>
+                                <div class="panel-body">temis</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Original Language</div>
+                                <div class="panel-body">temis</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Run time</div>
+                                <div class="panel-body">temis</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div th:fragment="container-films">
+    <div class="container-fluid text-center">
+
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3" th:each="film: ${films}">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="container">
+                            <img th:src="@{'https://image.tmdb.org/t/p/w500/'+ ${film.poster_path}}" alt="Avatar"class="image">
+                            <div class="middle">
+                                <button type="button" class="btn btn-primary btn-md" onclick="openNav()">Details du
+                                    film
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+<div th:fragment="footer">
+    <footer class="text-center">
+        <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a><br><br>
+        <p>Bootstrap Theme Made By <a href="#" data-toggle="tooltip" title="Visit w3schools">Spring cinema</a></p>
+    </footer>
+</div>
+
 <div th:fragment="footer-js">
     <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type='text/javascript' src='/webjars/jquery/jquery.min.js'></script>
+     ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type='text/javascript' src='/webjars/bootstrap/js/bootstrap.min.js'></script>
-    <script src="/webjars/tinymce/4.7.9/tinymce.min.js"></script>
+    <script src="/webjars/tinymce/4.7.9/tinymce.min.js"></script> -->
     <script type="application/javascript">
         $('.ui.dropdown.item')
             .dropdown();
     </script>
-</div>
+    <script>
+        function openNav() {
+            document.getElementById("overSide").style.width = "100%";
+        }
 
+        function closeNav() {
+            document.getElementById("overSide").style.width = "0%";
+        }
+    </script>
+</div>
 </body>
 </html>

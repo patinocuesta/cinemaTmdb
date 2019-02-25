@@ -1,7 +1,7 @@
-package online.patino.cinema.tmdb.service;
+package online.patino.cinema.tmdbFullImport.service;
 
-import online.patino.cinema.tmdb.dao.TmdbPersonDao;
-import online.patino.cinema.tmdb.model.TmdbPerson;
+import online.patino.cinema.tmdbFullImport.dao.TmdbPersonDao;
+import online.patino.cinema.tmdbFullImport.model.TmdbPerson;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +34,7 @@ public class TmdbPersonManager {
     }
     public String getUrl() {
         String fileName = getFileName();
-        String url = "http://files.tmdb.org/p/exports/" + fileName;
+        String url = "http://files.tmdbFullImport.org/p/exports/" + fileName;
         return url;
     }
 
@@ -64,7 +64,7 @@ public class TmdbPersonManager {
             String fileName = getFileName();
             File inputFile = new File("C:\\Users\\CDI\\IdeaProjects\\cinemaVarni\\src\\main\\resources\\tmdbFile\\"+fileName);
             //File inputFile = new File("C:\\Users\\dpc-c\\Documents\\Java_Varni_Ex\\cinemaTmdb\\src\\main\\resources\\tmdbFile\\"+fileName);
-            //File outputFile = new File("C:\\Users\\dpc-c\\Documents\\Java_Varni_Ex\\cinemaTmdb\\src\\main\\resources\\tmdbFile\\"+"tmdb.json");
+            //File outputFile = new File("C:\\Users\\dpc-c\\Documents\\Java_Varni_Ex\\cinemaTmdb\\src\\main\\resources\\tmdbFile\\"+"tmdbFullImport.json");
             File outputFile = new File("C:\\Users\\CDI\\IdeaProjects\\cinemaVarni\\src\\main\\resources\\tmdbFile\\"+"tmdbPersons.json");
             FileUtils.copyURLToFile(new URL(getUrl()),inputFile);
             GZIPInputStream in = new GZIPInputStream(new FileInputStream(inputFile));

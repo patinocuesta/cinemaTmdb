@@ -1,7 +1,7 @@
-package online.patino.cinema.tmdb.service;
+package online.patino.cinema.tmdbFullImport.service;
 
-import online.patino.cinema.tmdb.dao.TmdbFilmDao;
-import online.patino.cinema.tmdb.model.TmdbFilm;
+import online.patino.cinema.tmdbFullImport.dao.TmdbFilmDao;
+import online.patino.cinema.tmdbFullImport.model.TmdbFilm;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,7 +12,6 @@ import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.zip.GZIPInputStream;
 
 @Component
@@ -35,7 +34,7 @@ public class TmdbFilmManager {
     }
     public String getUrl() {
         String fileName = getFileName();
-        String url = "http://files.tmdb.org/p/exports/" + fileName;
+        String url = "http://files.tmdbFullImport.org/p/exports/" + fileName;
         return url;
     }
     public void importOnlineFullMovie_ids() {
@@ -70,7 +69,7 @@ public class TmdbFilmManager {
             String fileName = getFileName();
             File inputFile = new File("C:\\Users\\CDI\\IdeaProjects\\cinemaVarni\\src\\main\\resources\\tmdbFile\\"+fileName);
             //File inputFile = new File("C:\\Users\\dpc-c\\Documents\\Java_Varni_Ex\\cinemaTmdb\\src\\main\\resources\\tmdbFile\\"+fileName);
-            //File outputFile = new File("C:\\Users\\dpc-c\\Documents\\Java_Varni_Ex\\cinemaTmdb\\src\\main\\resources\\tmdbFile\\"+"tmdb.json");
+            //File outputFile = new File("C:\\Users\\dpc-c\\Documents\\Java_Varni_Ex\\cinemaTmdb\\src\\main\\resources\\tmdbFile\\"+"tmdbFullImport.json");
             File outputFile = new File("C:\\Users\\CDI\\IdeaProjects\\cinemaVarni\\src\\main\\resources\\tmdbFile\\"+"tmdbFilms.json");
             FileUtils.copyURLToFile(new URL(getUrl()),inputFile);
             GZIPInputStream in = new GZIPInputStream(new FileInputStream(inputFile));

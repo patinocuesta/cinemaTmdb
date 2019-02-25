@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/film")
 public class FilmController {
 
-
     @Autowired
     FilmManager filmManager;
 
@@ -24,8 +23,6 @@ public class FilmController {
 
     @Autowired
     GenreManager genreManager;
-
-
 
     @Autowired
     ImageManager imm;
@@ -89,6 +86,6 @@ public class FilmController {
         return "redirect:/film/mod/" + role.getFilm().getId();
     }
 
-    }
+}
 
 

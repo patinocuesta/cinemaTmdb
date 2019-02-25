@@ -1,4 +1,4 @@
-package online.patino.cinema.tmdb.model;
+package online.patino.cinema.tmdbFullImport.model;
 
 import javax.persistence.*;
 import java.util.Objects;

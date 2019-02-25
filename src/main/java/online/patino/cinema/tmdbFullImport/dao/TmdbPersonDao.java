@@ -1,6 +1,6 @@
-package online.patino.cinema.tmdb.dao;
+package online.patino.cinema.tmdbFullImport.dao;
 
-import online.patino.cinema.tmdb.model.TmdbPerson;
+import online.patino.cinema.tmdbFullImport.model.TmdbPerson;
 import org.springframework.data.repository.CrudRepository;
 
 public interface TmdbPersonDao  extends CrudRepository<TmdbPerson, Long> {
