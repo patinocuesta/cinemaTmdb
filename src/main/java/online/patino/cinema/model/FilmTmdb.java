@@ -9,18 +9,18 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FilmTmdb implements Serializable {
     private String poster_path;
-    private Boolean adult;
+    private String adult;
     private String overview;
     private String release_date;
     private List<Integer> genre_ids;
-    private Long id;
+    private String id;
     private String original_title;
     private String title;
     private String backdrop_path;
-    private Double popularity;
-    private Long vote_count;
-    private Boolean video;
-    private Double vote_average;
+    private String popularity;
+    private String vote_count;
+    private String video;
+    private String vote_average;
 
     public FilmTmdb(){}
 
@@ -32,11 +32,11 @@ public class FilmTmdb implements Serializable {
         this.poster_path = poster_path;
     }
 
-    public Boolean getAdult() {
+    public String getAdult() {
         return adult;
     }
 
-    public void setAdult(Boolean adult) {
+    public void setAdult(String adult) {
         this.adult = adult;
     }
 
@@ -64,11 +64,11 @@ public class FilmTmdb implements Serializable {
         this.genre_ids = genre_ids;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -96,35 +96,35 @@ public class FilmTmdb implements Serializable {
         this.backdrop_path = backdrop_path;
     }
 
-    public Double getPopularity() {
+    public String getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(Double popularity) {
+    public void setPopularity(String popularity) {
         this.popularity = popularity;
     }
 
-    public Long getVote_count() {
+    public String getVote_count() {
         return vote_count;
     }
 
-    public void setVote_count(Long vote_count) {
+    public void setVote_count(String vote_count) {
         this.vote_count = vote_count;
     }
 
-    public Boolean getVideo() {
+    public String getVideo() {
         return video;
     }
 
-    public void setVideo(Boolean video) {
+    public void setVideo(String video) {
         this.video = video;
     }
 
-    public Double getVote_average() {
+    public String getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(Double vote_average) {
+    public void setVote_average(String vote_average) {
         this.vote_average = vote_average;
     }
 }

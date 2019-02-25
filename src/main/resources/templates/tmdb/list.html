@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<ul th:each="film: ${films}">
+<li th:text="${film.title}"></li>
+    <ul>
+        <li th:text="${film.original_title}"></li>
+        <li th:text="${film.overview}"></li>
+        <li th:text="${film.popularity}"></li>
+        <li th:text="${film.vote_count}"></li>
+    </ul>
+</ul>
 </body>
 </html>
