@@ -18,6 +18,7 @@ import java.io.InputStream;
 @Controller()
 @RequestMapping(value = "/img")
 public class ImageController {
+    /*
     @Autowired
     FilmDao filmDao;
     @Autowired
@@ -55,4 +56,5 @@ public class ImageController {
         return image;
 
     }
+    */
 }

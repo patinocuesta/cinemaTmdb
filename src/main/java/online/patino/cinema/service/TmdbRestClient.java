@@ -27,7 +27,7 @@ public class TmdbRestClient {
     private static final String TMDB_FILM = TMDB_URL_START + "movie/{movie_id}?api_key=" + APIKEY + "&language={fr-FR}";
     private static final String TMDB_PERSON = TMDB_URL_START + "person/{person_id}?api_key=" + APIKEY + "&language={fr-FR}";
     private static final String TMDB_REVIEW = TMDB_URL_START + "review/{review_id}?api_key=" + APIKEY;
-    private static final String TMDB_POPULAR = TMDB_URL_START + "movie/upcoming?api_key=579e2cef7112c1ad8b0e5909e4becff1&language=fr-FR&page=1";
+    private static final String TMDB_POPULAR = TMDB_URL_START + "movie/upcoming?api_key=579e2cef7112c1ad8b0e5909e4becff1&language=fr-FR";
 
     private RestTemplate restTemplate;
 
@@ -64,5 +64,6 @@ public class TmdbRestClient {
         }
         return filmsList;
         }
+
 
 }

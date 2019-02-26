@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 
 @Component
 public class ImageManager {
+    /*
     @Value("${cinema.img.path}")
     String path;
 
@@ -74,4 +75,5 @@ public class ImageManager {
         }
         return is;
     }
+    */
 }

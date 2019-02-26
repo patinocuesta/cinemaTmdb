@@ -54,7 +54,7 @@ public class PersonController {
         model.addAttribute("person", person);
         return "person/form";
     }
-
+/*
     @PostMapping("/add")
     public String submit(@RequestParam("photo") MultipartFile file, @ModelAttribute Person person){
 
@@ -68,5 +68,5 @@ public class PersonController {
         personneDao.save(person);
         return "redirect:/person/list";
     }
-
+*/
 }
