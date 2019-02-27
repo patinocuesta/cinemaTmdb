@@ -228,7 +228,7 @@
     <div class="container-fluid text-center">
 
         <div class="row">
-            <div class="col-sm-6 col-md-3" th:each="film: ${films}">
+            <div class="col-sm-6 col-md-3" th:each="film: ${films.listFilmDto}">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="container">
@@ -246,11 +246,12 @@
 
     </div>
 </div>
+
 <div th:fragment="pagination">
     <div class="row">
         <ul class="pagination pagination-lg">
-            <li th:each="i : ${#numbers.sequence(0, films)}">
-                <a th:href="@{/(page=${i})}" th:text="${i}">1</a>
+            <li th:each="i : ${#numbers.sequence(1, films.total_pages)}">
+                <a th:href="@{${i}}" th:text="${i}">1</a>
             </li>
 
         </ul>
@@ -258,7 +259,9 @@
 </div>
 
 <div th:fragment="footer">
+
     <footer class="text-center">
+
         <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
             <span class="glyphicon glyphicon-chevron-up"></span>
         </a><br><br>

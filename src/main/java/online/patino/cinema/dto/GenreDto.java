@@ -1,15 +1,15 @@
-package online.patino.cinema.model;
+package online.patino.cinema.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GenreTmdb implements Serializable {
+public class GenreDto implements Serializable {
 private Long id;
 private String name;
 
-    GenreTmdb(){}
+    GenreDto(){}
 
     public Long getId() {
         return id;
@@ -29,7 +29,7 @@ private String name;
 
     @Override
     public String toString() {
-        return "GenreTmdb{" +
+        return "GenreDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

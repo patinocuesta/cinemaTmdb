@@ -1,11 +1,11 @@
-package online.patino.cinema.model;
+package online.patino.cinema.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PlayTmdb implements Serializable {
+public class PlayDto implements Serializable {
     private String character;
     private String credit_id;
     private Long id;

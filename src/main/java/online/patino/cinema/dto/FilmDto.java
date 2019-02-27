@@ -1,4 +1,4 @@
-package online.patino.cinema.model;
+package online.patino.cinema.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FilmTmdb implements Serializable {
+public class FilmDto implements Serializable {
     private String poster_path;
     private String adult;
     private String overview;
@@ -22,7 +22,7 @@ public class FilmTmdb implements Serializable {
     private String video;
     private String vote_average;
 
-    public FilmTmdb(){}
+    public FilmDto(){}
 
     public String getPoster_path() {
         return poster_path;
