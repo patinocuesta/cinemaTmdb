@@ -16,8 +16,8 @@
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 <div th:fragment="nav">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="container-fluid" STYLE="  max-width: 1000px; margin: auto;" >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
@@ -228,18 +228,21 @@
     <div class="container-fluid text-center">
 
         <div class="row">
-            <div class="col-sm-6 col-md-3" th:each="film: ${films.listFilmDto}">
+            <div class="col-xs-10 col-sm-3 col-md-3" th:each="film: ${films.listFilmDto}">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="container">
                             <img th:src="@{'https://image.tmdb.org/t/p/w500/'+ ${film.poster_path}}" alt="Avatar"class="image">
+
                             <div class="middle">
-                                <button type="button" class="btn btn-primary btn-md" onclick="openNav()">Details du
-                                    film
-                                </button>
+                                <button type="button" class="btn btn-primary btn-md" onclick="openNav()">Details du film</button>
+                                <br/><br/><br/>
+                                <button type="button" class="btn btn-primary btn-md" onclick="#">Importer</button>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

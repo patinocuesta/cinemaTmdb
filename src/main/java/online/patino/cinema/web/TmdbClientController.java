@@ -2,6 +2,7 @@ package online.patino.cinema.web;
 
 import online.patino.cinema.model.Film;
 import online.patino.cinema.service.TmdbRestClient;
+import org.hibernate.annotations.ParamDef;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
