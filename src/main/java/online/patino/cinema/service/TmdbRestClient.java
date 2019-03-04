@@ -5,7 +5,6 @@ import online.patino.cinema.dto.ListFilmResultatDto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,14 +14,13 @@ import java.util.List;
 
 @Component
 public class TmdbRestClient {
-    @Value("${tmdb.api.key}")
-    private String apiKey;
-    private static final String TMDB_URL_START = "https://api.themoviedb.org/3/";
-    private static final String TMDB_SEARCH = TMDB_URL_START + "movie?api_key={apiKey}&query=";
-    private static final String TMDB_FILM = TMDB_URL_START + "movie/{movie_id}?api_key={apiKey}&language={fr-FR}";
-    private static final String TMDB_PERSON = TMDB_URL_START + "person/{person_id}?api_key={apiKey}&language={fr-FR}";
-    private static final String TMDB_REVIEW = TMDB_URL_START + "review/{review_id}?api_key={apiKey}";
-    private static final String TMDB_POPULAR ="https://api.themoviedb.org/3/movie/upcoming?api_key=579e2cef7112c1ad8b0e5909e4becff1&language=fr-FR&page=";
+
+    private final static String API_KEY = "579e2cef7112c1ad8b0e5909e4becff1";
+    private static final String TMDB_HOST = "https://api.themoviedb.org/3/";
+    private static final String TMDB_SEARCH = TMDB_HOST + "movie?api_key={apiKey}&query=";
+    private static final String TMDB_PERSON = TMDB_HOST + "person/{person_id}?api_key="+API_KEY+"&language={fr-FR}";
+    private static final String TMDB_REVIEW = TMDB_HOST + "review/{review_id}?api_key="+API_KEY;
+    private static final String TMDB_POPULAR = TMDB_HOST + "movie/upcoming?api_key="+API_KEY+"&language=fr-FR&page=";
 
     private RestTemplate restTemplate;
 
@@ -63,7 +61,24 @@ public class TmdbRestClient {
         return new ListFilmResultatDto (urlResultat, total_results, total_pages, filmsList) ;
         }
 
-
+    public FilmDto tmdbFilmDetail(int id) throws IOException, JSONException {
+        String urlResultat = TMDB_HOST + "movie/"+id+"?api_key="+API_KEY+"&language={fr-FR}";
+        String json = restTemplate.getForObject(urlResultat, String.class);
+        JSONObject obj = new JSONObject(json);
+        FilmDto filmDto = new FilmDto();
+        filmDto.setTitle(obj.getString("title"));
+        filmDto.setOriginal_title(obj.getString("original_title"));
+        filmDto.setPoster_path(obj.getString("poster_path"));
+        filmDto.setOverview(obj.getString("overview"));
+        filmDto.setRelease_date(obj.getString("release_date"));
+        filmDto.setId(obj.getString("id"));
+        filmDto.setBackdrop_path(obj.getString("backdrop_path"));
+        filmDto.setPopularity(obj.getString("popularity"));
+        filmDto.setVote_count(obj.getString("vote_count"));
+        filmDto.setVideo(obj.getString("video"));
+        filmDto.setVote_count(obj.getString("vote_average"));
+        return filmDto;
+    }
 
 
 

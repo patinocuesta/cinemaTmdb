@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:include="fragments/layout :: head"> </div>
-
-</head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-<div th:include="fragments/layout :: navbar"> </div>
-<div th:include="fragments/layout :: overlay"> </div>
-<div th:include="fragments/layout :: container-films"> </div>
-
-<div th:include="fragments/layout :: pagination"> </div>
-<div th:include="fragments/layout :: footer"> </div>
-<div th:include="fragments/layout :: footer-js"> </div>
-
-
-</body>
+    <head>
+        <div th:include="fragments/layout :: head"> </div>
+    </head>
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+        <div th:include="fragments/layout :: navbar"> </div>
+        <div th:include="fragments/layout :: overlay"> </div>
+        <div th:include="fragments/layout :: container-films"> </div>
+        <div th:include="fragments/layout :: pagination"> </div>
+        <div th:include="fragments/layout :: footer"> </div>
+        <div th:include="fragments/layout :: footer-js"> </div>
+    </body>
 </html>

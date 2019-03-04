@@ -16,8 +16,7 @@ import java.io.*;
 
 @Component
 public class TmdbGenreManager {
-    @Value("${tmdb.api.key}")
-    private String apiKey;
+
 
     @Autowired
     private TmdbGenreDao tmdbGenreDao;
@@ -28,7 +27,7 @@ public class TmdbGenreManager {
 
     public Iterable<TmdbGenre> getAll() {return tmdbGenreDao.findAll();}
     public String getUrl() {
-        String url = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + apiKey;
+        String url = "";
         return url;
     }
 
