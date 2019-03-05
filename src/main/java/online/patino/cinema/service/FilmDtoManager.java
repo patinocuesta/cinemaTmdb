@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class TmdbRestClient {
+public class FilmDtoManager {
 
     private final static String API_KEY = "579e2cef7112c1ad8b0e5909e4becff1";
     private static final String TMDB_HOST = "https://api.themoviedb.org/3/";
@@ -25,7 +25,7 @@ public class TmdbRestClient {
     private RestTemplate restTemplate;
 
 
-    public TmdbRestClient(RestTemplate restTemplate) {
+    public FilmDtoManager(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -61,8 +61,8 @@ public class TmdbRestClient {
         return new ListFilmResultatDto (urlResultat, total_results, total_pages, filmsList) ;
         }
 
-    public FilmDto tmdbFilmDetail(int id) throws IOException, JSONException {
-        String urlResultat = TMDB_HOST + "movie/"+id+"?api_key="+API_KEY+"&language={fr-FR}";
+    public FilmDto tmdbFilmDetail(Long id) throws IOException, JSONException {
+        String urlResultat = TMDB_HOST + "movie/"+id+"?api_key="+API_KEY+"&language=fr-FR";
         String json = restTemplate.getForObject(urlResultat, String.class);
         JSONObject obj = new JSONObject(json);
         FilmDto filmDto = new FilmDto();

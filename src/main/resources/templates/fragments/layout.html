@@ -89,7 +89,7 @@
                                 <!-- Texto izquierda -->
                                     <div class="col-sm-6 col-md-8 col-lg-8 text-left">
                                         <div class="well">
-                                            <div class="film-title"> title</div>
+                                            <div class="film-title" id="film-title"> title</div>
                                         </div>
                                         <!--Panel Rating-->
                                             <div class="panel panel-default">
@@ -109,7 +109,7 @@
                                             <div class="panel-heading">
                                                 Sinopsis
                                             </div>
-                                            <div class="panel-body">
+                                            <div class="panel-body" id="overview">
                                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                                             </div>
                                         </div>
@@ -164,7 +164,7 @@
 <div class="panel panel-default">
 <div class="panel-body">
 <div class="container">
-<span th:text="${film.id}" style="display: none"></span>
+<div th:text="${film.id}"  id="idFilmDetail"></div>
 <img th:src="@{'https://image.tmdb.org/t/p/w500/'+ ${film.poster_path}}" alt="Avatar"class="image">
 <div class="middle">
 <button type="button" class="btn btn-primary btn-md" onclick="openNav()">Details du film</button>
@@ -208,12 +208,30 @@
             .dropdown();
     </script>
     <script>
+
+
         function openNav() {
+
+            var idFilmDetail = document.getElementById('idFilmDetail');
+            alert (idFilmDetail.innerText);
+            $.ajax({
+                url: '/api/tmdb/list/film/' + idFilmDetail.innerText,
+                type: 'get',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: 'data',
+                success: function(data){
+                    var filmTitle = data.title;
+                    var overview = data.overview;
+                    $('#film-title').html(filmTitle);
+                    $('#overview').html(overview);
+                }
+
+
+            });
             document.getElementById("overSide").style.width = "100%";
-            document.getElementById("mainNav").style.display ="none";
-
+            document.getElementById("mainNav").style.display = "none";
         }
-
         function closeNav() {
             document.getElementById("overSide").style.width = "0%";
             document.getElementById("mainNav").style.display = "block";
@@ -227,16 +245,6 @@
     })
     </script>
 
-    <script>
-        function crunchifyAjax() {
-            $.ajax({
-                url : 'ajaxtest.html',
-                success : function(data) {
-                    $('#result').html(data);
-                }
-            });
-        }
-    </script>
 
 </div>
 </body>
