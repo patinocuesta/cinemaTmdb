@@ -212,10 +212,11 @@
 
         function openNav() {
 
-            var idFilmDetail = document.getElementById('idFilmDetail');
-            alert (idFilmDetail.innerText);
+           // var idFilmDetail = document.getElementById('idFilmDetail');
+            var idFilmDetail = $(this).closest('button').prev('#idFilmDetail').text();
+            alert (idFilmDetail);
             $.ajax({
-                url: '/api/tmdb/list/film/' + idFilmDetail.innerText,
+                url: '/api/tmdb/list/film/' + idFilmDetail,
                 type: 'get',
                 dataType: 'json',
                 contentType: 'application/json',
