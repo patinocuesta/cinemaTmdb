@@ -82,14 +82,14 @@
                         <!-- row -->
                             <div class="row content" STYLE="max-width: 1000px; margin: auto;";>
                                 <div class="col-sm-6 col-md-4 col-lg-4 sidenav">
-                                    <img src="https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg" alt="Avatar" class="affiche_overlay">
+                                    <img src="" alt="Avatar" class="affiche_overlay" id="poster_path">
                                     <a href="" class="importbtn" onclick="closeNav()">Importer</a>
                                     <br/>
                                 </div>
                                 <!-- Texto izquierda -->
                                     <div class="col-sm-6 col-md-8 col-lg-8 text-left">
                                         <div class="well">
-                                            <div class="film-title" id="film-title"> title</div>
+                                            <div class="film-title" id="film-title"> </div>
                                         </div>
                                         <!--Panel Rating-->
                                             <div class="panel panel-default">
@@ -110,15 +110,14 @@
                                                 Sinopsis
                                             </div>
                                             <div class="panel-body" id="overview">
-                                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                                             </div>
                                         </div>
                                         <!--Panel genres-->
                                             <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    Genres
+                                                <div class="panel-heading" >
+                                                genres
                                                 </div>
-                                                <div class="panel-body">
+                                                <div class="panel-body" id="genres">
                                                     temis
                                                 </div>
                                         <!--Fin Panel genres-->
@@ -135,7 +134,7 @@
                                                                 Nom acteur
                                                             </div>
                                                             <div class="panel-body">
-                                                                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/bPqRdLWWwpOT8sBdj9PWOzNgwou.jpg" alt="Avatar" class="image_overlay">
+                                                                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/bPqRdLWWwpOT8sBdj9PWOzNgwou.jpg" alt="Avatar" class="image_overlay" >
                                                             </div>
                                                             <div class="panel-footer">
                                                                 Role
@@ -164,10 +163,9 @@
 <div class="panel panel-default">
 <div class="panel-body">
 <div class="container">
-<div th:text="${film.id}"  id="idFilmDetail"></div>
 <img th:src="@{'https://image.tmdb.org/t/p/w500/'+ ${film.poster_path}}" alt="Avatar"class="image">
 <div class="middle">
-<button type="button" class="btn btn-primary btn-md" onclick="openNav()">Details du film</button>
+<button type="button" class="btn btn-primary btn-md" onclick="openNav(this.id)" th:id="${film.id}">Details du film</button>
 <br/><br/><br/>
 <button type="button" class="btn btn-primary btn-md">Importer</button>
 </div>
@@ -181,7 +179,7 @@
 <div th:fragment="pagination">
     <div class="row">
         <ul class="pagination pagination-lg">
-            <li th:each="i : ${#numbers.sequence(1, films.total_pages)}">
+            <li th:each="i : ${#numbers.sequence(1,films.total_pages)}">
                 <a th:href="@{${i}}" th:text="${i}">1</a>
             </li>
 
@@ -210,22 +208,30 @@
     <script>
 
 
-        function openNav() {
+        function openNav(clicked_id) {
 
-           // var idFilmDetail = document.getElementById('idFilmDetail');
-            var idFilmDetail = $(this).closest('button').prev('#idFilmDetail').text();
-            alert (idFilmDetail);
             $.ajax({
-                url: '/api/tmdb/list/film/' + idFilmDetail,
+                url: '/api/tmdb/list/film/' + clicked_id,
                 type: 'get',
                 dataType: 'json',
                 contentType: 'application/json',
                 data: 'data',
                 success: function(data){
+
                     var filmTitle = data.title;
                     var overview = data.overview;
+                    var poster_path = data.poster_path;
+                    var genresList="";
+                    var obj = data.genres;
+
+                    for (var i = 0; i < data.genres.length; i++){
+                        genresList += " " + obj[i].name;
+                    }
+
+                    $('#genres').html(genresList);
                     $('#film-title').html(filmTitle);
                     $('#overview').html(overview);
+                    document.getElementById("poster_path").src = 'https://image.tmdb.org/t/p/w500/'+poster_path;
                 }
 
 
@@ -236,7 +242,9 @@
         function closeNav() {
             document.getElementById("overSide").style.width = "0%";
             document.getElementById("mainNav").style.display = "block";
-
+            $('#film-title').html('');
+            $('#overview').html('');
+            document.getElementById("poster_path").src ='';
         }
 
     </script>

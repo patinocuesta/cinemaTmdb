@@ -1,14 +1,16 @@
 package online.patino.cinema.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import java.io.Serializable;
 
+
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 public class GenreDto implements Serializable {
 private Long id;
 private String name;
-
     GenreDto(){}
 
     public Long getId() {

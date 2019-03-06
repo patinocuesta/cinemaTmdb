@@ -22,6 +22,7 @@ public class TmdbClientController {
     @GetMapping("/list/{page}")
     public String list(@PathVariable("page") int page, Model model) throws IOException, JSONException {
      model.addAttribute("films", filmDtoManager.ListFilmsPopular(page));
+     //model.addAttribute("filmDetail", filmDtoManager.tmdbFilmDetail());
         return "tmdb/list";
     }
 

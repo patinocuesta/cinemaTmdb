@@ -1,6 +1,8 @@
 package online.patino.cinema.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
@@ -12,7 +14,7 @@ public class FilmDto implements Serializable {
     private String adult;
     private String overview;
     private String release_date;
-    private List<Integer> genre_ids;
+    private List<GenreDto> genres;
     private String id;
     private String original_title;
     private String title;
@@ -56,13 +58,13 @@ public class FilmDto implements Serializable {
         this.release_date = release_date;
     }
 
-    public List<Integer> getGenre_ids() {
-        return genre_ids;
-    }
+   // public ListGenresDto getGenres() {
+     //   return genres;
+   // }
 
-    public void setGenre_ids(List<Integer> genre_ids) {
-        this.genre_ids = genre_ids;
-    }
+    //public void setGenres(ListGenresDto genres) {
+      //  this.genres = genres;
+    //}
 
     public String getId() {
         return id;
@@ -127,4 +129,15 @@ public class FilmDto implements Serializable {
     public void setVote_average(String vote_average) {
         this.vote_average = vote_average;
     }
+
+
+    @JsonProperty("genres")
+    public List<GenreDto> getGenres() {
+        return genres;
+    }
+    @JsonCreator
+    public void setGenres(@JsonProperty("genres") List<GenreDto> genres) {
+        this.genres = genres;
+    }
 }
+

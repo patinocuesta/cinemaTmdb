@@ -1,13 +1,18 @@
 package online.patino.cinema.service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import online.patino.cinema.dto.FilmDto;
+import online.patino.cinema.dto.GenreDto;
 import online.patino.cinema.dto.ListFilmResultatDto;
+import online.patino.cinema.dto.ListGenresDto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +63,7 @@ public class FilmDtoManager {
             filmDto.setVote_count(result.getString("vote_average"));
             filmsList.add(filmDto);
         }
+
         return new ListFilmResultatDto (urlResultat, total_results, total_pages, filmsList) ;
         }
 
@@ -65,6 +71,14 @@ public class FilmDtoManager {
         String urlResultat = TMDB_HOST + "movie/"+id+"?api_key="+API_KEY+"&language=fr-FR";
         String json = restTemplate.getForObject(urlResultat, String.class);
         JSONObject obj = new JSONObject(json);
+
+// Unwrap the root value para sacar el array nested
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS, true);
+        ListGenresDto listGenresDto = mapper.readValue(json, ListGenresDto.class);
+
+
+
         FilmDto filmDto = new FilmDto();
         filmDto.setTitle(obj.getString("title"));
         filmDto.setOriginal_title(obj.getString("original_title"));
@@ -77,6 +91,7 @@ public class FilmDtoManager {
         filmDto.setVote_count(obj.getString("vote_count"));
         filmDto.setVideo(obj.getString("video"));
         filmDto.setVote_count(obj.getString("vote_average"));
+        filmDto.setGenres(listGenresDto.getListGenresDto());
         return filmDto;
     }
 
