@@ -180,7 +180,7 @@
     <div class="row">
         <ul class="pagination pagination-lg">
             <li th:each="i : ${#numbers.sequence(1,films.total_pages)}">
-                <a th:href="@{${i}}" th:text="${i}">1</a>
+                <a th:href="@{${i}}" th:text="${i}" th:id="'pg'+ ${i}"  onclick ="pgNav()" >1</a>
             </li>
 
         </ul>
@@ -201,13 +201,25 @@
     <script src="/webjars/jquery/3.3.1/jquery.js"></script>
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script type="application/javascript">
+    <script>
         $('.ui.dropdown.item')
             .dropdown();
     </script>
     <script>
+     function pgNav(clicked_id) {
+
+         $.ajax({
+             url: "tmdb/list/" + clicked_id,
+             type: 'get',
+             dataType: 'json',
+             contentType: 'application/json',
+             data: 'data'
+     });
+     }
 
 
+    </script>
+    <script>
         function openNav(clicked_id) {
 
             $.ajax({

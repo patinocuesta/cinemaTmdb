@@ -76,9 +76,6 @@ public class FilmDtoManager {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS, true);
         ListGenresDto listGenresDto = mapper.readValue(json, ListGenresDto.class);
-
-
-
         FilmDto filmDto = new FilmDto();
         filmDto.setTitle(obj.getString("title"));
         filmDto.setOriginal_title(obj.getString("original_title"));
