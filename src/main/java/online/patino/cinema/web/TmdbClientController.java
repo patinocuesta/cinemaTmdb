@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.jws.WebParam;
 import java.io.IOException;
 
 @Controller
@@ -21,11 +20,11 @@ public class TmdbClientController {
     @Autowired
     private FilmDtoManager filmDtoManager;
 
-    @GetMapping("/list/{page}")
-    public String list(@PathVariable("page") int page, Model model) throws IOException, JSONException {
-     model.addAttribute("films", filmDtoManager.ListFilmsPopular(page));
-     //model.addAttribute("filmDetail", filmDtoManager.tmdbFilmDetail());
+    @GetMapping("/list")
+    public String list(Model model) throws IOException, JSONException {
+     model.addAttribute("films", filmDtoManager.ListFilmsPopular(1));
         return "tmdb/list";
     }
+
 
 }
