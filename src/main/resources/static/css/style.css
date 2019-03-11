@@ -65,12 +65,14 @@ body {
     left: 50px;
     font-size: 20px;
 }
+.cast {
+    width: 100%;
+}
 #panel-body-cast .panel-body{
     text-align: center;
 }
 .image_overlay{
-    max-height: 200px;
-    min-height: 100px;
+    width: 100%;
     position: center;
     text-align: center;
 
@@ -91,12 +93,10 @@ body {
     }
 }
 /* Hover over poster */
-.panel {
-    min-width: 200px;
-}
+
 .container {
     position: relative;
-    width: 100%;
+    width: auto;
     height: 230px ;
     /*padding-right: 20%;
     */
