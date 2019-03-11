@@ -1,5 +1,7 @@
 package online.patino.cinema.dto;
 
+import online.patino.cinema.dto.FilmDto;
+
 import java.util.List;
 
 public class ListFilmResultatDto {

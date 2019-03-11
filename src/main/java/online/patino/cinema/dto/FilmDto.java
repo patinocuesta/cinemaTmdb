@@ -3,28 +3,27 @@ package online.patino.cinema.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FilmDto implements Serializable {
     private String poster_path;
-    private String adult;
+    private Boolean adult;
     private String overview;
-    private String release_date;
+    private Date release_date;
     private List<GenreDto> genres;
-    private String id;
+    private Long id;
     private String original_title;
     private String title;
     private String backdrop_path;
-    private String popularity;
-    private String vote_count;
-    private String video;
-    private String vote_average;
-    private List<PersonDto> cast;
-    private List<PersonDto> crew;
+    private Double popularity;
+    private Double vote_count;
+    private Boolean video;
+    private Double vote_average;
+    private CreditsDto credits;
 
     public FilmDto(){}
 
@@ -36,11 +35,11 @@ public class FilmDto implements Serializable {
         this.poster_path = poster_path;
     }
 
-    public String getAdult() {
+    public Boolean getAdult() {
         return adult;
     }
 
-    public void setAdult(String adult) {
+    public void setAdult(Boolean adult) {
         this.adult = adult;
     }
 
@@ -52,27 +51,19 @@ public class FilmDto implements Serializable {
         this.overview = overview;
     }
 
-    public String getRelease_date() {
+    public Date getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(String release_date) {
+    public void setRelease_date(Date release_date) {
         this.release_date = release_date;
     }
 
-   // public ListGenresDto getGenres() {
-     //   return genres;
-   // }
-
-    //public void setGenres(ListGenresDto genres) {
-      //  this.genres = genres;
-    //}
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -100,38 +91,37 @@ public class FilmDto implements Serializable {
         this.backdrop_path = backdrop_path;
     }
 
-    public String getPopularity() {
+    public Double getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(String popularity) {
+    public void setPopularity(Double popularity) {
         this.popularity = popularity;
     }
 
-    public String getVote_count() {
+    public Double getVote_count() {
         return vote_count;
     }
 
-    public void setVote_count(String vote_count) {
+    public void setVote_count(Double vote_count) {
         this.vote_count = vote_count;
     }
 
-    public String getVideo() {
+    public Boolean getVideo() {
         return video;
     }
 
-    public void setVideo(String video) {
+    public void setVideo(Boolean video) {
         this.video = video;
     }
 
-    public String getVote_average() {
+    public Double getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(String vote_average) {
+    public void setVote_average(Double vote_average) {
         this.vote_average = vote_average;
     }
-
 
     @JsonProperty("genres")
     public List<GenreDto> getGenres() {
@@ -140,6 +130,15 @@ public class FilmDto implements Serializable {
     @JsonCreator
     public void setGenres(@JsonProperty("genres") List<GenreDto> genres) {
         this.genres = genres;
+    }
+
+    @JsonProperty("credits")
+    public CreditsDto getCredits() {
+        return credits;
+    }
+    @JsonCreator
+    public void setCredits(@JsonProperty("credits") CreditsDto credits) {
+        this.credits = credits;
     }
 }
 

@@ -2,18 +2,21 @@ package online.patino.cinema.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import online.patino.cinema.dto.FilmDto;
-import online.patino.cinema.dto.GenreDto;
+import online.patino.cinema.dto.*;
+import online.patino.cinema.dto.rest.CastDto;
+import online.patino.cinema.dto.rest.CreditDto;
+import online.patino.cinema.dto.rest.CrewDto;
 import online.patino.cinema.dto.ListFilmResultatDto;
-import online.patino.cinema.dto.ListGenresDto;
+import online.patino.cinema.dto.rest.ListGenresDto;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +42,7 @@ public class FilmDtoManager {
         return restTemplate.getForObject(TMDB_SEARCH + searchStr, FilmDto[].class);
     }
 
-    public ListFilmResultatDto ListFilmsPopular(int page) throws IOException, JSONException {
+    public ListFilmResultatDto ListFilmsPopular(int page) throws IOException, JSONException, ParseException {
         List<FilmDto> filmsList = new ArrayList<FilmDto>();
         String urlResultat = TMDB_POPULAR + page;
         String json = restTemplate.getForObject(urlResultat, String.class);
@@ -54,20 +57,20 @@ public class FilmDtoManager {
             filmDto.setOriginal_title(result.getString("original_title"));
             filmDto.setPoster_path(result.getString("poster_path"));
             filmDto.setOverview(result.getString("overview"));
-            filmDto.setRelease_date(result.getString("release_date"));
-            filmDto.setId(result.getString("id"));
+            filmDto.setRelease_date(new SimpleDateFormat("yyyy-MM-dd").parse(result.getString("release_date")));
+            filmDto.setId(result.getLong("id"));
             filmDto.setBackdrop_path(result.getString("backdrop_path"));
-            filmDto.setPopularity(result.getString("popularity"));
-            filmDto.setVote_count(result.getString("vote_count"));
-            filmDto.setVideo(result.getString("video"));
-            filmDto.setVote_count(result.getString("vote_average"));
+            filmDto.setPopularity(result.getDouble("popularity"));
+            filmDto.setVote_count(result.getDouble("vote_count"));
+            filmDto.setVideo(result.getBoolean("video"));
+            filmDto.setVote_count(result.getDouble("vote_average"));
             filmsList.add(filmDto);
         }
 
         return new ListFilmResultatDto (urlResultat, total_results, total_pages, filmsList) ;
         }
 
-    public FilmDto tmdbFilmDetail(Long id) throws IOException, JSONException {
+    public FilmDto tmdbFilmDetail(Long id) throws IOException, JSONException, ParseException {
         String urlResultat = TMDB_HOST + "movie/"+id+"?api_key="+API_KEY+"&language=fr-FR&append_to_response=credits,images";
         String json = restTemplate.getForObject(urlResultat, String.class);
         JSONObject obj = new JSONObject(json);
@@ -76,19 +79,21 @@ public class FilmDtoManager {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS, true);
         ListGenresDto listGenresDto = mapper.readValue(json, ListGenresDto.class);
+        CreditDto credits = mapper.readValue(json, CreditDto.class);
         FilmDto filmDto = new FilmDto();
         filmDto.setTitle(obj.getString("title"));
         filmDto.setOriginal_title(obj.getString("original_title"));
         filmDto.setPoster_path(obj.getString("poster_path"));
         filmDto.setOverview(obj.getString("overview"));
-        filmDto.setRelease_date(obj.getString("release_date"));
-        filmDto.setId(obj.getString("id"));
+        filmDto.setRelease_date(new SimpleDateFormat("yyyy-MM-dd").parse(obj.getString("release_date")));
+        filmDto.setId(obj.getLong("id"));
         filmDto.setBackdrop_path(obj.getString("backdrop_path"));
-        filmDto.setPopularity(obj.getString("popularity"));
-        filmDto.setVote_count(obj.getString("vote_count"));
-        filmDto.setVideo(obj.getString("video"));
-        filmDto.setVote_count(obj.getString("vote_average"));
+        filmDto.setPopularity(obj.getDouble("popularity"));
+        filmDto.setVote_count(obj.getDouble("vote_count"));
+        filmDto.setVideo(obj.getBoolean("video"));
+        filmDto.setVote_count(obj.getDouble("vote_average"));
         filmDto.setGenres(listGenresDto.getListGenresDto());
+        filmDto.setCredits( credits.getCreditsDto());
         return filmDto;
     }
 

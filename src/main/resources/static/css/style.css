@@ -65,13 +65,19 @@ body {
     left: 50px;
     font-size: 20px;
 }
+#panel-body-cast .panel-body{
+    text-align: center;
+}
 .image_overlay{
-    max-height: 150px;
+    max-height: 200px;
+    min-height: 100px;
+    position: center;
+    text-align: center;
 
 }
 .affiche_overlay{
     max-height: 700px;
-    width: 100%
+    width: 100%;
 }
 
 

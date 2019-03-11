@@ -1,38 +1,23 @@
 package online.patino.cinema.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CrewDto implements Serializable {
-    private long id;
-    private String credit_id;
-    private String job;
+public class CrewMemberDto implements Serializable {
+    private Long id;
     private String name;
+    private String job;
     private String profile_path;
 
-    public long getId() {
+    public CrewMemberDto (){}
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCredit_id() {
-        return credit_id;
-    }
-
-    public void setCredit_id(String credit_id) {
-        this.credit_id = credit_id;
-    }
-
-    public String getJob() {
-        return job;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
     }
 
     public String getName() {
@@ -41,6 +26,14 @@ public class CrewDto implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 
     public String getProfile_path() {

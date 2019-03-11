@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 @RestController
 @RequestMapping("/api/tmdb/list/film")
@@ -23,7 +24,7 @@ public class FilmDtoRestController {
         this.filmDtoManager = filmDtoManager;
     }
     @GetMapping("/{id}")
-    public FilmDto getById(@PathVariable("id")long id) throws IOException, JSONException {
+    public FilmDto getById(@PathVariable("id")long id) throws IOException, JSONException, ParseException {
         return filmDtoManager.tmdbFilmDetail(id);
     }
 
