@@ -23,6 +23,8 @@ public class FilmDto implements Serializable {
     private String vote_count;
     private String video;
     private String vote_average;
+    private List<PersonDto> cast;
+    private List<PersonDto> crew;
 
     public FilmDto(){}
 

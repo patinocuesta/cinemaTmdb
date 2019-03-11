@@ -68,7 +68,7 @@ public class FilmDtoManager {
         }
 
     public FilmDto tmdbFilmDetail(Long id) throws IOException, JSONException {
-        String urlResultat = TMDB_HOST + "movie/"+id+"?api_key="+API_KEY+"&language=fr-FR";
+        String urlResultat = TMDB_HOST + "movie/"+id+"?api_key="+API_KEY+"&language=fr-FR&append_to_response=credits,images";
         String json = restTemplate.getForObject(urlResultat, String.class);
         JSONObject obj = new JSONObject(json);
 

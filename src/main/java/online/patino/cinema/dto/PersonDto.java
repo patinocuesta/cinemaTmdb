@@ -6,4 +6,5 @@ import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonDto implements Serializable {
+
 }
