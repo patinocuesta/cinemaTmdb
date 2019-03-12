@@ -8,68 +8,13 @@
         <script src="/webjars/tinymce/4.7.9/tinymce.min.js"></script>
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/static/css/style.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/navbar.css" th:href="@{/static/css/navbar.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/listfilms.css" th:href="@{/static/css/listfilms.css}"/>
+
     </div>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-<div th:fragment="navbar">
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="mainNav">
-        <div class="container-fluid" STYLE="max-width: 1000px; margin: auto;">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Spring Cinema</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li><a href="#">A l'affiche</a></li>
-                    <li><a href="#">Evenements</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Explorer
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Films</a></li>
-                            <li><a href="#">Acteurs</a></li>
-                            <li><a href="#">Realisateurs</a></li>
-                            <li><a href="#">Genres</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nos distributeurs
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a th:href="@{'tmdb/list/1'}" th:text="Importer">Importer</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nôtre cinema
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">blog</a></li>
-                            <li><a href="#">Nous trouver</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">A propos de nous</a></li>
-                        </ul>
-                    </li>
-                </ul>
 
-            </div>
-            <nav class="classnavbar navbar-inverse" id="importSearch">
-                <div class="search-container">
-                    <form class="example" action="/action_page.php">
-                        <input type="text" placeholder="Search.." name="search">
-                    </form>
-                </div>
-            </nav>
-    </nav>
-
-</div>
 <div th:fragment="overlay">
     <!--Overside-->
     <div id="overSide" class="overlay">
@@ -158,27 +103,7 @@
         <!--Fin Overside-->
     </div>
 </div>
-<div th:fragment="container-films">
-    <div class="container-fluid text-center" id="container-films">
-        <div class="row" id="row-films">
-            <div class="col-xs-6 col-sm-3 col-md-3" th:each="film: ${films.listFilmDto}" id="col-films">
-                <div class="panel panel-default" id="filmpanel">
-                    <div class="panel-body">
-                        <div class="container">
-                            <img th:src="@{'https://image.tmdb.org/t/p/w500/'+ ${film.poster_path}}" alt="Avatar"
-                                 class="image" id="poster_path">
-                            <div class="middle">
-                                <button type="button" class="btn btn-primary btn-md" onclick="openNav(this.id)"
-                                        th:id="${film.id}">Voir details
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div th:fragment="pagination">
     <div class="row">
         <ul class="pagination pagination-lg">
