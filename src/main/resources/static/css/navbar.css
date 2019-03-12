@@ -1,0 +1,21 @@
+body {
+    /*padding-top: cuando no logado = 50px
+        padding-top: cuando no logado = 100px*/
+    padding-top: 50px;
+}
+#row-nav-admin{
+    /*display cuando no logado = none
+        display cuando logado = inline*/
+    display:none;
+}
+#navbar-toggle-button-admin{
+    /*display cuando no logado = none
+        display cuando logado = inline*/
+    display:none;
+}
+#container-breadcrumb{
+    /*margin-top cuando no logado = 0
+        margin-top cuando logado = 50px*/
+    margin-top: 0;
+    padding: 10px;
+}

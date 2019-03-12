@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="navbar">
+<!-- Start navBar main -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Start container-nav-->
+    <div class="container" id="container-nav">
+        <!-- Start row-nav-public-->
+        <div class="row" id="row-nav-public">
+            <!-- Start nav-header: navbar-toggle-public + navbar-toggle-admin + navbar-brand-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarPublic">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarAdmin" id="navbar-toggle-button-admin">
+                    Admin
+                </button>
+                <a class="navbar-brand" href="#">
+                    Cinema Spring
+                </a>
+            </div>
+            <!-- Start myNavbarPublic-->
+            <div class="collapse navbar-collapse" id="myNavbarPublic">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Films</a></li>
+                    <li><a href="#">Evenements</a></li>
+                    <li><a href="#">E-billets</a></li>
+                    <li><a href="#">Notre cinema</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+            <!-- End myNavbarPublic-->
+        </div>
+        <!-- End row-nav-public-->
+        <!-- Start row-nav-admin-->
+        <div class="row" id="row-nav-admin">
+            <div class="collapse navbar-collapse" id="myNavbarAdmin">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Catalogue</a></li>
+                    <li><a href="#">Programmation</a></li>
+                    <li><a href="#">Moderation</a></li>
+                    <li><a href="#">Ventes</a></li>
+                    <li><a href="#">Inbox</a></li>
+                </ul>
+            </div>
+            <!-- End myNavbarAdmin-->
+        </div>
+        <!-- End row-nav-admin-->
+    </div>
+    <!-- End Container nav -->
+</nav>
+<!-- End navBar main -->
+<!-- Start container-breadcrumb  -->
+<div class="container" id= "container-breadcrumb">
+    <div class="row" id= "row-breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="active"> <a href="#">Home</a> </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- End container-breadcrumb  -->
+</div>
+</html>

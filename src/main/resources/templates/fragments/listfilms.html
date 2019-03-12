@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="container-films">
+    <div class="container" id="container-films">
+        <div class="row" id="row-films">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" th:each="film: ${films.listFilmDto}" id="col-films">
+                <div class="thumbnail">
+                    <a href="#" target="_blank" onclick="openNav(this.id)" th:id="${film.id}">
+                            <img th:src="@{'https://image.tmdb.org/t/p/w500/'+ ${film.poster_path}}" alt="Avatar" class="affiche-thumbnail">
+                            <div class="caption">
+                                <p th:text="${film.title}">Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                                </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
