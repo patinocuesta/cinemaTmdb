@@ -6,33 +6,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script src="/webjars/tinymce/4.7.9/tinymce.min.js"></script>
-        <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/webjars/bootstrap/3.4.1/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="/static/css/style.css" th:href="@{/static/css/style.css}"/>
         <link rel="stylesheet" type="text/css" href="/static/css/navbar.css" th:href="@{/static/css/navbar.css}"/>
         <link rel="stylesheet" type="text/css" href="/static/css/listfilms.css" th:href="@{/static/css/listfilms.css}"/>
         <link rel="stylesheet" type="text/css" href="/static/css/pagination.css" th:href="@{/static/css/pagination.css}"/>
-
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </div>
 </head>
 <body>
 
 
 
-<div th:fragment="pagination">
-    <div class="row">
-        <ul class="pagination pagination-lg">
-            <li th:each="i : ${#numbers.sequence(1,films.total_pages)}">
-                <a href="" th:text="${i}" th:id="${i}" onclick="pgNav(this.id);return false;">1</a>
-                <!-- <a th:href="@{${i}}" th:text="${i}" th:id="${i}"  onclick ="pgNav()">1</a>  -->
 
-            </li>
-
-        </ul>
-
-    </div>
-</div>
-</div>
 <div th:fragment="footer">
 
     <footer class="text-center">
@@ -44,9 +30,9 @@
     </footer>
 </div>
 <div th:fragment="footer-js">
-    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
-    <script src="/webjars/jquery/3.3.1/jquery.js"></script>
-
+    <script src="/webjars/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- Placed at the end of the document so the pages load faster -->
 

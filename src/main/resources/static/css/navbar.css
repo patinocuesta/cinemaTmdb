@@ -7,12 +7,15 @@ body {
 }
 #row-nav-admin{
     /*display cuando no logado = none
-        display cuando logado = inline*/
+        display cuando logado = inline
+        */
     display:none;
+
 }
 #navbar-toggle-button-admin{
     /*display cuando no logado = none
-        display cuando logado = inline*/
+        display cuando logado = inline
+        */
     display:none;
 }
 #container-breadcrumb{
