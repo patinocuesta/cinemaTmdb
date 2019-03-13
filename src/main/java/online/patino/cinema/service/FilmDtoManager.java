@@ -48,6 +48,7 @@ public class FilmDtoManager {
         String json = restTemplate.getForObject(urlResultat, String.class);
         JSONObject obj = new JSONObject(json);
         Integer total_pages = (Integer) obj.get("total_pages");
+        Integer current_page = (Integer) obj.get("page");
         Integer total_results = (Integer) obj.get("total_results");
         JSONArray results = (JSONArray) obj.get("results");
         for (int i = 0; i < results.length(); i++) {
@@ -67,7 +68,7 @@ public class FilmDtoManager {
             filmsList.add(filmDto);
         }
 
-        return new ListFilmResultatDto (urlResultat, total_results, total_pages, filmsList) ;
+        return new ListFilmResultatDto (total_results, current_page, total_pages, filmsList) ;
         }
 
     public FilmDto tmdbFilmDetail(Long id) throws IOException, JSONException, ParseException {

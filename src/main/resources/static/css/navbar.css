@@ -2,6 +2,8 @@ body {
     /*padding-top: cuando no logado = 50px
         padding-top: cuando no logado = 100px*/
     padding-top: 50px;
+    width: 100%;
+    margin: auto;
 }
 #row-nav-admin{
     /*display cuando no logado = none

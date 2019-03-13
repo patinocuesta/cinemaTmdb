@@ -8,13 +8,14 @@ public class ListFilmResultatDto {
     private Integer total_results;
     private Integer total_pages;
     private List<FilmDto> listFilmDto;
-    private String urlResultat;
+    private Integer current_page;
 
     public ListFilmResultatDto(){}
 
-    public ListFilmResultatDto(String urlResultat, Integer total_results, Integer total_pages, List<FilmDto> listFilmDto){
-        this.urlResultat=urlResultat;
+    public ListFilmResultatDto(Integer total_results, Integer current_page, Integer total_pages, List<FilmDto> listFilmDto){
+
         this.total_results=total_results;
+        this.current_page=current_page;
         this.total_pages=total_pages;
         this.listFilmDto = listFilmDto;
     }
@@ -25,6 +26,14 @@ public class ListFilmResultatDto {
 
     public void setTotal_results(Integer total_results) {
         this.total_results = total_results;
+    }
+
+    public Integer getCurrent_page() {
+        return current_page;
+    }
+
+    public void setCurrent_page(Integer current_page) {
+        this.current_page = current_page;
     }
 
     public Integer getTotal_pages() {
@@ -43,21 +52,5 @@ public class ListFilmResultatDto {
         this.listFilmDto = listFilmDto;
     }
 
-    public String getUrlResultat() {
-        return urlResultat;
-    }
 
-    public void setUrlResultat(String urlResultat) {
-        this.urlResultat = urlResultat;
-    }
-
-    @Override
-    public String toString() {
-        return "ListFilmResultatDto{" +
-                "total_results=" + total_results +
-                ", total_pages=" + total_pages +
-                ", listFilmDto=" + listFilmDto +
-                ", urlResultat='" + urlResultat + '\'' +
-                '}';
-    }
 }
