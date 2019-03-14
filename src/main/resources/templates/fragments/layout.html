@@ -39,11 +39,7 @@
         $('.ui.dropdown.item')
             .dropdown();
     </script>
-    <script>
-        $(document).ready(function(){
-            $('#pagination-list li:first').addClass('active');});
 
-    </script>
     <script>
         function pgNav(clicked_id) {
             $("#row-films").empty();
@@ -70,8 +66,8 @@
             })
 
             $(document).ready(function(){
-                $( '#pagination-list' ).removeClass('active');
-                clicked_id.addClass("active")
+                $( '#pagination-list' ).children( ".visited" ).removeClass('visited');
+                clicked_id.addClass("active");
                });
 
         }
