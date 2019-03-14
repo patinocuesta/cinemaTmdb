@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="/static/css/navbar.css" th:href="@{/static/css/navbar.css}"/>
         <link rel="stylesheet" type="text/css" href="/static/css/listfilms.css" th:href="@{/static/css/listfilms.css}"/>
         <link rel="stylesheet" type="text/css" href="/static/css/pagination.css" th:href="@{/static/css/pagination.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/overlayfilm.css" th:href="@{/static/css/overlayfilm.css}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </div>
 </head>
@@ -33,15 +34,17 @@
     <script src="/webjars/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
     <!-- Placed at the end of the document so the pages load faster -->
-
     <script>
         $('.ui.dropdown.item')
             .dropdown();
     </script>
     <script>
+        $(document).ready(function(){
+          $('#pagination-list li:first').addClass('active');});
 
+    </script>
+    <script>
         function pgNav(clicked_id) {
             $("#row-films").empty();
             $.ajax({
@@ -53,26 +56,21 @@
                 success: function (data) {
                     for (var i = 0; i < data.listFilmDto.length; i++) {
                         $("#row-films").append(
-                            '<div class="col-xs-6 col-sm-3 col-md-3" id="col-films">' +
-                            '<div class="panel panel-default">' +
-                            '<div class="panel-body">' +
-                            '<div class="container" >' +
-                            '<img src="https://image.tmdb.org/t/p/w500/' + data.listFilmDto[i].poster_path + '" alt="Avatar" class="image" id="poster_path">' +
-                            '<div class="middle">' +
-                            '<button type="button" class="btn btn-primary btn-md" onclick="openNav(this.id)" id="' + data.listFilmDto[i].id + '">Details du film </button>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>'
+                            ' <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 portafolio" id="col-films">' +
+                            '                <div class="thumbnail">' +
+                            '                    <img  class="img-responsive" src="https://image.tmdb.org/t/p/w500/' + data.listFilmDto[i].poster_path  + '"/>' +
+                            '                    <div class="middle">' +
+                            '                         <button type="button" class="btn btn-primary btn-md" onclick="openNav(this.id)" id="'+data.listFilmDto[i].id +'">' + data.listFilmDto[i].title  + '</button>' +
+                            '                    </div>' +
+                            '                </div>' +
+                            '            </div>'
                         );
                     }
                 }
             })
-
+           $( '#pagination-list' ).children( ".active" ).removeClass('active');
+           $('#'+ clicked_id).parent().addClass("active");
         }
-
-
     </script>
     <script>
         function openNav(clicked_id) {
@@ -80,7 +78,6 @@
             $('#overview').empty();
             document.getElementById("poster_path").src = '';
             $("#panel-body-cast").empty();
-
             $.ajax({
                 url: '/api/tmdb/list/film/' + clicked_id,
                 type: 'get',
@@ -88,7 +85,6 @@
                 contentType: 'application/json',
                 data: 'data',
                 success: function (data) {
-
                     var filmTitle = data.title;
                     var overview = data.overview;
                     var poster_path = data.poster_path;
@@ -96,17 +92,13 @@
                     var genres = data.genres;
                     var cast = data.credits.cast;
                     var crew = data.credits.crew;
-
-
                     for (var i = 0; i < data.genres.length; i++) {
                         genresList += " " + genres[i].name;
                     }
-
                     $('#genres').html(genresList);
                     $('#film-title').html(filmTitle);
                     $('#overview').html(overview);
                     document.getElementById("poster_path").src = 'https://image.tmdb.org/t/p/w500/' + poster_path;
-
                     for (var i = 0; i< 4; i++){
                         $("#panel-body-cast").append(
                             '<div class="col-xs-6 col-sm-6 col-md-3" id="col-artist">' +
@@ -123,37 +115,28 @@
                             '</div>' +
                             '</div>' +
                             '</div>'
-
                         );
                     }
-
-
                 }
-
-
             });
             document.getElementById("overSide").style.width = "100%";
-            document.getElementById("mainNav").style.display = "none";
-        }
 
+
+        }
         function closeNav() {
             document.getElementById("overSide").style.width = "0%";
-            document.getElementById("mainNav").style.display = "block";
             $('#film-title').empty();
             $('#overview').empty();
             document.getElementById("poster_path").src = '';
             $("#panel-body-cast").empty();
 
         }
-
     </script>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         })
     </script>
-
-
 </div>
 </body>
 </html>

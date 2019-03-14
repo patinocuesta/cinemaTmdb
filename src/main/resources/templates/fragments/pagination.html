@@ -6,16 +6,13 @@
 </head>
 <body>
 <div th:fragment="pagination">
-    <div class="row" id="row-pagination">
-        <div class="container" id="container-pagination">
-        <ul class="pagination pagination-lg" id="pagination-list">
-            <li th:each="i : ${#numbers.sequence(1,films.total_pages)}">
-                <a href="" th:text="${i}" th:id="${i}" onclick="pgNav(this.id);return false;">1</a>
-                <!-- <a th:href="@{${i}}" th:text="${i}" th:id="${i}"  onclick ="pgNav()">1</a>  -->
-
-            </li>
-
-        </ul>
+    <div class="text-center" id="container-pagination">
+        <div class="row" id="row-pagination">
+            <ul class="pagination pagination-lg" id="pagination-list">
+                <li th:each="i : ${#numbers.sequence(1,films.total_pages)}">
+                    <a href="" th:text="${i}" th:id="${i}" onclick="pgNav(this.id);return false;">1</a>
+                    </li>
+                </ul>
         </div>
     </div>
 </div>
