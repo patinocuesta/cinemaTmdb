@@ -41,7 +41,7 @@
     </script>
     <script>
         $(document).ready(function(){
-          $('#pagination-list li:first').addClass('active');});
+            $('#pagination-list li:first').addClass('active');});
 
     </script>
     <script>
@@ -68,8 +68,12 @@
                     }
                 }
             })
-           $( '#pagination-list' ).children( ".active" ).removeClass('active');
-           $('#'+ clicked_id).parent().addClass("active");
+
+            $(document).ready(function(){
+                $( '#pagination-list' ).removeClass('active');
+                clicked_id.addClass("active")
+               });
+
         }
     </script>
     <script>
@@ -121,15 +125,14 @@
             });
             document.getElementById("overSide").style.width = "100%";
 
-
         }
         function closeNav() {
+
             document.getElementById("overSide").style.width = "0%";
             $('#film-title').empty();
             $('#overview').empty();
             document.getElementById("poster_path").src = '';
             $("#panel-body-cast").empty();
-
         }
     </script>
     <script>
