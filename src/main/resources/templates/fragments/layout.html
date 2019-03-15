@@ -39,7 +39,12 @@
         $('.ui.dropdown.item')
             .dropdown();
     </script>
+<script>
 
+        $(document).ready(function(){
+            $("li:first-child").addClass('active');
+        });
+</script>
     <script>
         function pgNav(clicked_id) {
             $("#row-films").empty();
@@ -66,14 +71,17 @@
             })
 
             $(document).ready(function(){
-                $( '#pagination-list' ).children( ".visited" ).removeClass('visited');
-                clicked_id.addClass("active");
-               });
+            $('#pagination-list').children('.active').removeClass('active');
+             var index = parseInt (document.getElementById(clicked_id).innerText);
+             $('li:nth-child(' + index + ')').addClass('active');
+            });
 
         }
     </script>
     <script>
         function openNav(clicked_id) {
+            $('#pagination-list').children('.active').hide();
+
             $('#film-title').empty();
             $('#overview').empty();
             document.getElementById("poster_path").src = '';
@@ -120,11 +128,10 @@
                 }
             });
             document.getElementById("overSide").style.width = "100%";
-
         }
         function closeNav() {
-
             document.getElementById("overSide").style.width = "0%";
+            $('#pagination-list').children('.active').show();
             $('#film-title').empty();
             $('#overview').empty();
             document.getElementById("poster_path").src = '';
