@@ -4,15 +4,15 @@ import online.patino.cinema.dto.FilmDto;
 
 import java.util.List;
 
-public class ListFilmResultatDto {
+public class FilmListResultatDto {
     private Integer total_results;
     private Integer total_pages;
     private List<FilmDto> listFilmDto;
     private Integer current_page;
 
-    public ListFilmResultatDto(){}
+    public FilmListResultatDto(){}
 
-    public ListFilmResultatDto(Integer total_results, Integer current_page, Integer total_pages, List<FilmDto> listFilmDto){
+    public FilmListResultatDto(Integer total_results, Integer current_page, Integer total_pages, List<FilmDto> listFilmDto){
 
         this.total_results=total_results;
         this.current_page=current_page;

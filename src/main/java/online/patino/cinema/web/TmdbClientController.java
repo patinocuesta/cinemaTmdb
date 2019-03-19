@@ -20,10 +20,26 @@ public class TmdbClientController {
     @Autowired
     private FilmDtoManager filmDtoManager;
 
-    @GetMapping("/list")
-    public String list(Model model) throws IOException, JSONException, ParseException {
-     model.addAttribute("films", filmDtoManager.ListFilmsPopular(1));
-        return "/tmdb/list";
+    @GetMapping("/films")
+    public String films(Model model) throws IOException, JSONException, ParseException {
+     model.addAttribute("films", filmDtoManager.getTmdbMovieListPopular(1));
+        return "/tmdb/films";
     }
-
+/*
+    @GetMapping("/upcoming")
+    public String listUpcoming(Model model) throws IOException, JSONException, ParseException {
+        model.addAttribute("films", filmDtoManager.getTmdbMovieListUpcoming(1));
+        return "/tmdb/films";
+    }
+    @GetMapping("/latest")
+    public String listLatest(Model model) throws IOException, JSONException, ParseException {
+        model.addAttribute("films", filmDtoManager.getTmdbMovieListLatest(1));
+        return "/tmdb/films";
+    }
+    @GetMapping("/top")
+    public String list(Model model) throws IOException, JSONException, ParseException {
+        model.addAttribute("films", filmDtoManager.getTmdbMovieListTop(1));
+        return "/tmdb/films";
+    }
+*/
 }

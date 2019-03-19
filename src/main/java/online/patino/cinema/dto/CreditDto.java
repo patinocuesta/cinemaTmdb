@@ -1,4 +1,4 @@
-package online.patino.cinema.dto.rest;
+package online.patino.cinema.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

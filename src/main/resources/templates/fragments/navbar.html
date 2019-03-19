@@ -3,7 +3,7 @@
 
 <div th:fragment="navbar">
 <!-- Start navBar main -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="navbarfull">
     <!-- Start container-nav-->
     <div class="container" id="container-nav">
         <!-- Start row-nav-public-->
@@ -19,6 +19,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarAdmin" id="navbar-toggle-button-admin">
                     Admin
                 </button>
+
                 <a class="navbar-brand" href="#">
                     Cinema Spring
                 </a>
@@ -26,7 +27,7 @@
             <!-- Start myNavbarPublic-->
             <div class="collapse navbar-collapse" id="myNavbarPublic">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Films</a></li>
+                    <li class="active"><a href="#">Films</a></li>
                     <li><a href="#">Evenements</a></li>
                     <li><a href="#">E-billets</a></li>
                     <li><a href="#">Notre cinema</a></li>
@@ -53,21 +54,11 @@
             </div>
             <!-- End myNavbarAdmin-->
         </div>
-        <!-- End row-nav-admin-->
+
     </div>
     <!-- End Container nav -->
 </nav>
 <!-- End navBar main -->
-<!-- Start container-breadcrumb  -->
-<div class="container" id= "container-breadcrumb">
-    <div class="row" id= "row-breadcrumb">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li class="active"> <a href="#">Home</a> </li>
-            </ol>
-        </div>
-    </div>
-</div>
-<!-- End container-breadcrumb  -->
+
 </div>
 </html>
