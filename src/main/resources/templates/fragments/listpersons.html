@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="container-persons">
+    <div class="container" id="container-persons" >
+        <div class="row" id="row-persons">
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 portafolio" th:each="person: ${persons.listPersonDto}" id="col-persons">
+                <div class="thumbnail">
+                    <img  class="img-responsive" th:src="@{'https://image.tmdb.org/t/p/w500/'+ ${person.profile_path}}"/>
+                    <div class="middle">
+                        <button type="button" class="btn btn-primary btn-md" onclick="#" th:id="${person.id}" th:text="${person.name}">Bio & filmo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

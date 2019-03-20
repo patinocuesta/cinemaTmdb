@@ -1,22 +1,20 @@
 package online.patino.cinema.dto;
 
-
 import java.util.List;
 
-public class FilmListResultatDto {
+public class PersonListResultatDto {
     private Integer total_results;
     private Integer total_pages;
-    private List<FilmDto> listFilmDto;
+    private List<PersonDto> listPersonDto;
     private Integer current_page;
 
-    public FilmListResultatDto(){}
+    public PersonListResultatDto(){}
 
-    public FilmListResultatDto(Integer total_results, Integer current_page, Integer total_pages, List<FilmDto> listFilmDto){
-
+    public PersonListResultatDto(Integer total_results, Integer current_page, Integer total_pages, List<PersonDto> listPersonDto){
         this.total_results=total_results;
         this.current_page=current_page;
         this.total_pages=total_pages;
-        this.listFilmDto = listFilmDto;
+        this.listPersonDto=listPersonDto;
     }
 
     public Integer getTotal_results() {
@@ -27,14 +25,6 @@ public class FilmListResultatDto {
         this.total_results = total_results;
     }
 
-    public Integer getCurrent_page() {
-        return current_page;
-    }
-
-    public void setCurrent_page(Integer current_page) {
-        this.current_page = current_page;
-    }
-
     public Integer getTotal_pages() {
         return total_pages;
     }
@@ -43,13 +33,19 @@ public class FilmListResultatDto {
         this.total_pages = total_pages;
     }
 
-    public List<FilmDto> getListFilmDto() {
-        return listFilmDto;
+    public List<PersonDto> getListPersonDto() {
+        return listPersonDto;
     }
 
-    public void setListFilmDto(List<FilmDto> listFilmDto) {
-        this.listFilmDto = listFilmDto;
+    public void setListPersonDto(List<PersonDto> listPersonDto) {
+        this.listPersonDto = listPersonDto;
     }
 
+    public Integer getCurrent_page() {
+        return current_page;
+    }
 
+    public void setCurrent_page(Integer current_page) {
+        this.current_page = current_page;
+    }
 }

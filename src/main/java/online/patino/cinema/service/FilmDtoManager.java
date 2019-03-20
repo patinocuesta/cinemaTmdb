@@ -21,7 +21,7 @@ public class FilmDtoManager {
     private final static String API_KEY = "579e2cef7112c1ad8b0e5909e4becff1";
     private static final String TMDB_HOST = "https://api.themoviedb.org/3/movie/";
     private static final String TMDB_SEARCH = TMDB_HOST + "movie?api_key={apiKey}&query=";
-    private static final String TMDB_POPULAR = TMDB_HOST + "upcoming?api_key="+API_KEY+"&language=fr-FR&page=";
+    private static final String TMDB_POPULAR = TMDB_HOST + "popular?api_key="+API_KEY+"&language=fr-FR&page=";
     private static final String TMDB_LATEST = TMDB_HOST + "latest?api_key="+API_KEY+"&language=fr-FR&page=";
     private static final String TMDB_UPCOMING = TMDB_HOST + "upcoming?api_key="+API_KEY+"&language=fr-FR&page=";
     private static final String TMDB_TOP_RATED = TMDB_HOST + "top_rated?api_key="+API_KEY+"&language=fr-FR&page=";

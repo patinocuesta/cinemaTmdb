@@ -3,6 +3,7 @@ package online.patino.cinema.web;
 
 import online.patino.cinema.service.FilmDtoManager;
 
+import online.patino.cinema.service.PersonDtoManager;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,10 +20,13 @@ import java.text.ParseException;
 public class TmdbClientController {
     @Autowired
     private FilmDtoManager filmDtoManager;
+    @Autowired
+    private PersonDtoManager personDtoManager;
+
 
     @GetMapping("/films")
     public String films(Model model) throws IOException, JSONException, ParseException {
-     model.addAttribute("films", filmDtoManager.getTmdbMovieListPopular(1));
+     model.addAttribute("films", filmDtoManager.getTmdbMovieListUpcoming(1));
         return "/tmdb/films";
     }
 /*
@@ -42,4 +46,9 @@ public class TmdbClientController {
         return "/tmdb/films";
     }
 */
+@GetMapping("/persons")
+public String persons(Model model) throws IOException, JSONException, ParseException {
+    model.addAttribute("persons", personDtoManager.getTmdbPersonListPopular(1));
+    return "/tmdb/persons";
+}
 }

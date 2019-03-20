@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:include="fragments/layout :: head"> </div>
+</head>
+<body>
+<div th:include="fragments/navbar :: navbar"> </div>
+<div th:include="fragments/breadcrumb :: breadcrumb"> </div>
+<div th:include="fragments/listpersons :: container-persons"> </div>
+<div th:include="fragments/paginationpersons :: pagination"> </div>
+<div th:include="fragments/layout :: footer"> </div>
+<div th:include="fragments/layout :: footer-js"> </div>
+</body>
+</html>
