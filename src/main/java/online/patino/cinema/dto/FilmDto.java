@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -13,17 +12,20 @@ public class FilmDto implements Serializable {
     private String poster_path;
     private Boolean adult;
     private String overview;
-    private Date release_date;
+    private String release_date;
     private List<GenreDto> genres;
     private Long id;
     private String original_title;
+    private String original_language;
     private String title;
     private String backdrop_path;
     private Double popularity;
     private Double vote_count;
     private Boolean video;
     private Double vote_average;
+    private Integer runtimeFilm;
     private CreditsDto credits;
+    private List<CountryDto> production_countries;
 
     public FilmDto(){}
 
@@ -51,11 +53,11 @@ public class FilmDto implements Serializable {
         this.overview = overview;
     }
 
-    public Date getRelease_date() {
+    public String getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Date release_date) {
+    public void setRelease_date(String release_date) {
         this.release_date = release_date;
     }
 
@@ -73,6 +75,14 @@ public class FilmDto implements Serializable {
 
     public void setOriginal_title(String original_title) {
         this.original_title = original_title;
+    }
+
+    public String getOriginal_language() {
+        return original_language;
+    }
+
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
     }
 
     public String getTitle() {
@@ -123,6 +133,14 @@ public class FilmDto implements Serializable {
         this.vote_average = vote_average;
     }
 
+    public Integer getRuntimeFilm() {
+        return runtimeFilm;
+    }
+
+    public void setRuntimeFilm(Integer runtimeFilm) {
+        this.runtimeFilm = runtimeFilm;
+    }
+
     @JsonProperty("genres")
     public List<GenreDto> getGenres() {
         return genres;
@@ -139,6 +157,15 @@ public class FilmDto implements Serializable {
     @JsonCreator
     public void setCredits(@JsonProperty("credits") CreditsDto credits) {
         this.credits = credits;
+    }
+
+    @JsonProperty("production_countries")
+    public List<CountryDto> getProduction_countries() {
+        return production_countries;
+    }
+    @JsonCreator
+    public void setProduction_countries(@JsonProperty("production_countries") List<CountryDto> production_countries) {
+        this.production_countries = production_countries;
     }
 }
 

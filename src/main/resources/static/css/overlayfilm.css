@@ -1,5 +1,6 @@
+#overSide a {
 
-
+}
 .overlay {
     /* Height & width depends on how you want to reveal the overlay (see JS below) */
     height: 100%;
@@ -20,7 +21,7 @@
     /*top: 25%; /* 25% from the top */
     width: 100%; /* 100% width */
     text-align: center; /* Centered text/links */
-    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+    margin-top: 50px; /* 50px top margin to avoid conflict with the close button on smaller screens */
 }
 .overlay a {
     text-decoration: none;
@@ -35,30 +36,85 @@
 .overlay .closebtn {
     /* Position the close button (top right corner) */
     position: absolute;
-    margin-top: 20px;
+    /*margin-top: 20px;
+    clear: right;*/
     right: 45px;
     font-size: 40px;
-    clear: right;
+
 }
 .overlay .importbtn {
     left: 50px;
     font-size: 20px;
 }
-#panel-body-cast .panel-body{
+#panel-body-cast{
     text-align: center;
 }
 .image_overlay{
-    max-height: 200px;
-    min-height: 100px;
+    width: 100%;
+    height: auto;
     position: center;
     text-align: center;
-
 }
+
 .affiche_overlay{
-    max-height: 700px;
     width: 100%;
+    height: auto;
 }
 
+@media(min-width:731px){
+.panel-footer {
+    font-size: 11px;
+}
+    .image_overlay {
+        width: auto;
+        max-height: 200px;
+    }
+}
+
+    @media(min-width:550px) and (max-width:730px) {
+    .image_overlay {
+        width: auto;
+        max-height: 175px;
+    }
+    .col-artist, .panel-body {
+        font-size: 11px;
+    }
+        .panel-heading, #col-artist .panel-heading{
+            font-size: 12px;
+        }
+}
+
+@media(min-width:350px) and (max-width:549px){
+    .image_overlay{
+        width: auto;
+        max-height: 200px;
+    }
+    .col-artist, .panel-body{
+        font-size: 10px;
+    }
+    .panel-heading{
+        font-size: 12px;
+    }
+}
+@media (max-width:349px){
+    .image_overlay {
+        width: auto;
+        height: 100px;
+    }
+    .col-artist, .panel-body, .panel-heading{
+        font-size: 10px;
+    }
+    }
+    .affiche_overlay{}
+
+
+.col-artist{
+    padding: 2px;
+}
+
+#cast{
+    padding: 0;
+}
 
 @media screen and (max-height: 450px) {
     /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */

@@ -18,7 +18,9 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceHandler("/webjars/**")
                 .addResourceLocations("/webjars/");
         // Register resource handler for CSS and JS
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/")
+        registry
+                .addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/")
                 .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
         /*
         registry

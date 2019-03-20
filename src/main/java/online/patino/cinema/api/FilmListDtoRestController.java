@@ -1,6 +1,6 @@
 package online.patino.cinema.api;
 
-import online.patino.cinema.dto.ListFilmResultatDto;
+import online.patino.cinema.dto.FilmListResultatDto;
 import online.patino.cinema.service.FilmDtoManager;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 @RestController
-@RequestMapping("/api/tmdb/list/")
+@RequestMapping("/api/films")
 public class FilmListDtoRestController {
     @Autowired
     private FilmDtoManager filmDtoManager;
@@ -23,8 +23,20 @@ public class FilmListDtoRestController {
         this.filmDtoManager = filmDtoManager;
     }
 
-    @GetMapping("/{page}")
-    public ListFilmResultatDto getByPage (@PathVariable("page") int page) throws IOException, JSONException, ParseException {
-      return filmDtoManager.ListFilmsPopular(page);
+    @GetMapping("/popular/{page}")
+    public FilmListResultatDto getPopularByPage (@PathVariable("page") int page) throws IOException, JSONException, ParseException {
+      return filmDtoManager.getTmdbMovieListPopular(page);
+    }
+    @GetMapping("/latest/{page}")
+    public FilmListResultatDto getLatestByPage (@PathVariable("page") int page) throws IOException, JSONException, ParseException {
+        return filmDtoManager.getTmdbMovieListLatest(page);
+    }
+    @GetMapping("/upcoming/{page}")
+    public FilmListResultatDto getUpcomingByPage (@PathVariable("page") int page) throws IOException, JSONException, ParseException {
+        return filmDtoManager.getTmdbMovieListUpcoming(page);
+    }
+    @GetMapping("/top/{page}")
+    public FilmListResultatDto getTopRatedByPage (@PathVariable("page") int page) throws IOException, JSONException, ParseException {
+        return filmDtoManager.getTmdbMovieListTop(page);
     }
 }

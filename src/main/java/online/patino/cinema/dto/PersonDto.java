@@ -1,9 +1,12 @@
 package online.patino.cinema.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonDto implements Serializable {
@@ -19,6 +22,7 @@ public class PersonDto implements Serializable {
     private String profile_path;
     private Boolean adult;
     private String imdb_id;
+    private List<FilmDto> filmo;
 
     public PersonDto(){}
 
@@ -108,5 +112,14 @@ public class PersonDto implements Serializable {
 
     public void setImdb_id(String imdb_id) {
         this.imdb_id = imdb_id;
+    }
+
+    @JsonProperty("known_for")
+    public List<FilmDto> getFilmo() {
+        return filmo;
+    }
+    @JsonCreator
+    public void setFilmo(@JsonProperty("known_for") List<FilmDto> filmo) {
+        this.filmo = filmo;
     }
 }

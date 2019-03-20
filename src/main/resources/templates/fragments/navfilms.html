@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="navfilms">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbarfilmSearch" id="navbar-toggle-button-filmSearch">
+    Search
+</button>
+    <!-- Start container-nav-->
+    <div class="container" id="container-nav-filmSearch">
+    <!-- Start row-nav-filmSearch-->
+    <div class="row" id="row-nav-filmSearch">
+        <div class="collapse navbar-collapse" id="myNavbarfilmSearch">
+            <ul class="nav navbar-nav" id="navfavoris">
+                <li class="active"><a href="javascript:void(0)" id="popular" onclick="getMovieList(this.id);return false;">Popular</a></li>
+                <li><a href="javascript:void(0)" id="top" onclick="getMovieList(this.id);return false;"> Top Rated</a></li>
+                <li><a href="javascript:void(0)" id="upcoming" onclick="getMovieList(this.id);return false;">Upcoming</a></li>
+                <li><a href="javascript:void(0)" id="Search" onclick="getMovieList(this.id);return false;">Search</a></li>
+            </ul>
+        </div>
+        <!-- End myNavbarfilmSearch-->
+    </div>
+    <!-- End row-nav-filmSearch-->
+</div>
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package online.patino.cinema.dto.rest;
+package online.patino.cinema.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -8,11 +8,11 @@ import online.patino.cinema.dto.GenreDto;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ListGenresDto {
+public class GenresListDto {
     private  List<GenreDto> genresListDto;
 
     @JsonCreator
-    public ListGenresDto(@JsonProperty("genres")  List<GenreDto> genresListDto) {
+    public GenresListDto(@JsonProperty("genres")  List<GenreDto> genresListDto) {
         this.genresListDto = genresListDto;
     }
 

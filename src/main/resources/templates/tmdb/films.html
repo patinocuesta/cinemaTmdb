@@ -5,9 +5,11 @@
     </head>
     <body>
         <div th:include="fragments/navbar :: navbar"> </div>
+        <div th:include="fragments/navfilms :: navfilms"> </div>
+        <div th:include="fragments/breadcrumb :: breadcrumb"> </div>
         <div th:include="fragments/overlayfilm :: overlayfilm"> </div>
         <div th:include="fragments/listfilms :: container-films"> </div>
-        <div th:include="fragments/pagination :: pagination"> </div>
+        <div th:include="fragments/paginationfilms :: pagination"> </div>
         <div th:include="fragments/layout :: footer"> </div>
         <div th:include="fragments/layout :: footer-js"> </div>
     </body>
