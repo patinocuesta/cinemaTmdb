@@ -12,6 +12,8 @@ function getMovieList(clicked_id) {
     $('#pagination-list').children('.active').removeClass('active');
     $('#pagination-list li:first-child').addClass('active');
     ajaxFun(page, urlapi);
+    $("#pagination-list").empty();
+    ajaxPg(page, urlapi);
 }
 
 function pgNav(clicked_id) {
@@ -22,6 +24,24 @@ function pgNav(clicked_id) {
     var index = parseInt(document.getElementById(clicked_id).innerText);
     $('#pagination-list li:nth-child(' + index + ')').addClass('active');
     ajaxFun(page, urlapi);
+}
+
+function ajaxPg(page, urlapi) {
+    $("#pagination-list").empty();
+    $.ajax({
+        url: urlapi + page,
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: 'data',
+        success: function (data) {
+            for (var i = 0; i < data.total_pages; i++) {
+                $('#pagination-list').append(
+                    '<li><a href="" id ="'+ i +'" onclick="pgNav(this.id);return false;">'+ i +'</a></li>'
+                );
+            }
+        }
+    });
 }
 
 function ajaxFun(page, urlapi) {
