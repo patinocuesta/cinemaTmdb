@@ -9,9 +9,10 @@
     <div class="text-center" id="container-pagination">
         <div class="row" id="row-pagination">
             <ul class="pagination pagination-lg" id="pagination-list">
-                <li th:each="i : ${#numbers.sequence(1,films.total_pages)}">
+                             <li th:each="i : ${#numbers.sequence(1,films.total_pages)}">
                     <a href="" th:text="${i}" th:id="${i}" onclick="pgNav(this.id);return false;">1</a>
                     </li>
+
                 </ul>
         </div>
     </div>

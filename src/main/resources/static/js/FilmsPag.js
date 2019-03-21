@@ -24,10 +24,53 @@ function pgNav(clicked_id) {
     var index = parseInt(document.getElementById(clicked_id).innerText);
     $('#pagination-list li:nth-child(' + index + ')').addClass('active');
     ajaxFun(page, urlapi);
+
 }
 
-function ajaxPg(page, urlapi) {
+function addPg (page){
+       for ( var i = 0;i < 10; i++) {
+        $('#pagination-list').append(
+            '<li><a href="" id ="' + page + '" onclick="pgNav(this.id);return false;">' + page + '</a></li>'
+        );
+           if (i==0){
+               $('#pagination-list li:first-child').addClass('active');
+           }
+        page++;
+    }
+
+}
+
+function xtraPg(clicked_id, total_pages){
     $("#pagination-list").empty();
+    var tipo = $('#navfavoris > li.active > a').attr('id');
+    var urlapi = '/api/films/' + tipo + '/';
+    var page = clicked_id;
+    ajaxPg(page, urlapi);
+    ajaxFun(page, urlapi);
+    $('#pagination-list').prepend('<li><a href="#" id="' + page + '" onclick="moinsPg(this.id);return false;">...</a></li>');
+    $('#pagination-list').prepend('<li><a href="" id ="1" onclick="pgNav(this.id);return false;">1</a></li>');
+    if (parseInt(total_pages)>parseInt(pages)) {
+        $('#pagination-list').append('<li><a href="#" id="'+ page + '" onclick="xtraPg(this.id,'+total_pages+');return false;">...</a></li>');
+    }
+}
+
+function moinsPg(clicked_id){
+    $("#pagination-list").empty();
+    var tipo = $('#navfavoris > li.active > a').attr('id');
+    var urlapi = '/api/films/' + tipo + '/';
+    var page = parseInt(clicked_id)-10;
+    ajaxPg(page, urlapi);
+    ajaxFun(page, urlapi);
+    $('#pagination-list').append('<li><a href="#" id="'+ page + '" onclick="xtraPg(this.id,'+total_pages+');return false;">...</a></li>');
+    if (parseInt(page)>1) {
+        $('#pagination-list').prepend('<li><a href="" id="' + page + '" onclick="moinsPg(this.id);return false;">...</a></li>');
+        $('#pagination-list').append('<li><a href="" id ="1" onclick="pgNav(this.id);return false;">1</a></li>'
+        );
+
+    }
+}
+function ajaxPg(page, urlapi) {
+
     $.ajax({
         url: urlapi + page,
         type: 'get',
@@ -35,13 +78,26 @@ function ajaxPg(page, urlapi) {
         contentType: 'application/json',
         data: 'data',
         success: function (data) {
-            for (var i = 0; i < data.total_pages; i++) {
+            var total_pages = data.total_pages;
+            if (parseInt(data.total_pages) > 10) {
+                addPg (page);
+                page = parseInt(page)+10;
+                $('#pagination-list').append('<li><a href="#" id="'+ page + '" onclick="xtraPg(this.id, '+total_pages+');return false;">...</a></li>');
                 $('#pagination-list').append(
-                    '<li><a href="" id ="'+ i +'" onclick="pgNav(this.id);return false;">'+ i +'</a></li>'
+                    '<li><a href="" id ="' + (parseInt(data.total_pages))  + '" onclick="pgNav(this.id);return false;">' + (parseInt(data.total_pages)) + '</a></li>'
                 );
+
+
+            } else {
+                for (var i=0; i < 10; i++) {
+                    $('#pagination-list').append(
+                        '<li><a href="" id ="' + page + '" onclick="pgNav(this.id);return false;">' + page + '</a></li>'
+                    );
+                    page++;
+                }
             }
         }
-    });
+        });
 }
 
 function ajaxFun(page, urlapi) {
